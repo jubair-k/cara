@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="assets/bootstrap-css/bootstrap.min.css">
+    <script src="assets/jquery/jquery-3.6.0.min.js"></script>
+    <title>login</title>
+    <style>
+        section {
+            width: 100%;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #b8c6db;
+            background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 100%);
+        }
+
+        #signInBtn {
+            border-radius: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            width: 100%;
+            height: auto;
+            font-weight: bold;
+            background-color: #0f9643 ;
+            color: white;
+        }
+
+        #signUpBtn {
+            border-radius: 20px;
+            padding-top: 10px;
+            width: 90%;
+            height: auto;
+            font-weight: bold;
+        }
+
+        .inpt {
+            height: auto;
+            padding-bottom: 8px;
+            padding-top: 8px;
+        }
+
+        .forget {
+            color: black !important;
+            font-size: 14px;
+        }
+
+        .forget:hover {
+            color: crimson !important;
+        }
+
+        .closeBtn {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+        }
+
+        span {
+            cursor: pointer;
+        }
+
+        .wraper {
+            width: 1020px;
+            height: 600px;
+            background-color: cadetblue;
+            display: flex;
+        }
+
+        .right-wraper {
+            width: 40%;
+            height: auto;
+            background-color: rgb(255, 255, 255);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0px 0px 10px 2px rgba(0, 0, 0, .4);
+            padding: 40px 30px;
+            border-radius: 4px;
+        }
+
+        .right-wraper h1 {
+            font-size: 3rem;
+            margin-bottom: 40px;
+            font-family: 'Lobster', cursive;
+            color: rgb(54, 53, 52);
+        }
+
+        .right-wraper form {
+            width: 100%;
+        }
+
+        .right-wraper .or {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .right-wraper .or span {
+            width: 40%;
+            height: 1px;
+            background-color: rgba(0, 0, 0, .4);
+            margin: 0px 10px;
+        }
+
+        .loginGoogle {
+            font-weight: 17px;
+            font-weight: 600;
+            color: blue;
+            cursor: pointer;
+        }
+
+        .googleLogo {
+            width: 25px;
+            margin-right: 5px;
+        }
+
+        #userValidateMessage,
+        #passwordValidateMessage,
+        #allValidateMessage,
+        #signUpUserValidate,
+        #signUpPasswordValidate {
+            color: crimson;
+            font-style: italic;
+            font-size: 14px;
+            font-weight: 400;
+        }
+
+        .inptincorrect {
+            border: solid 1px crimson;
+        }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="right-wraper">
+            <form action="" method="post" id="signInForm">
+                <input type="text" name="user" class="form-control inpt" placeholder="Enter user name"
+                    autocomplete="off">
+                <span class="d-block mb-4" id="userValidateMessage"></span>
+                <input type="password" name="password" class="form-control inpt" placeholder="Password">
+                <span class="d-block mb-4" id="passwordValidateMessage"></span>
+                <span class="d-block mb-4 text-center" id="allValidateMessage"></span>
+                <input type="submit" id="signInBtn" class="btn mt-2 form-control" value="Login"
+                    name="signIn">
+            </form>
+        </div>
+    </section>
+
+    <script src="assets/bootstrap-js/bootstrap.bundle.js"></script>
+    <script src="assets/jquery/jquery-3.6.0.min.js"></script>
+
+
+    <script>
+        $(document).ready(function () {
+            // sign-in form process
+            $('#signInForm').on('submit', function () {
+                event.preventDefault();
+                dataobj = $('#signInForm').serialize();
+                $.ajax({
+                    type: 'POST',
+                    dataType: 'json',
+                    url: 'assets/process/login-process.php',
+                    data: dataobj,
+                    success: function (data) {
+                        //console.log(data)
+                        if (!data.massage) {
+                            if (data.error.name) {
+                                $('#userValidateMessage').text(data.error.name)
+                                $('#userValidateMessage').prev().addClass('inptincorrect')
+                            }
+                            else {
+                                $('#userValidateMessage').text('')
+                                $('#userValidateMessage').prev().removeClass('inptincorrect')
+                            }
+
+                            if (data.error.password) {
+                                $('#passwordValidateMessage').text(data.error.password)
+                                $('#passwordValidateMessage').prev().addClass('inptincorrect')
+                            }
+                            else {
+                                $('#passwordValidateMessage').text('')
+                                $('#passwordValidateMessage').prev().removeClass('inptincorrect')
+                            }
+
+                            if (data.error.incorrect) {
+                                $('#allValidateMessage').text(data.error.incorrect)
+                                $('#userValidateMessage').prev().addClass('inptincorrect')
+                                $('#passwordValidateMessage').prev().addClass('inptincorrect')
+                            }
+                            else {
+                                $('#allValidateMessage').text('')
+                            }
+
+                            if (data.error.banned) {
+                                alert(data.error.banned)
+                            }
+
+                        }
+                        if (data.massage) {                            
+                            window.location = `${data.massage}`;
+                        }
+                    }
+                })
+            })
+        })
+
+    </script>
+</body>
+
+</html>
