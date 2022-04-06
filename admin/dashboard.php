@@ -24,13 +24,13 @@
         </div>
 
         <div class="items">
-            <li class="li-active"><i class="fad fa-chart-pie-alt"></i><a href="#">Dashboard</a></li>
-            <li><i class="fab fa-uikit"></i><a href="#">Categories Master</a></li>
-            <li><i class="fas fa-th-large"></i><a href="#">Sub Categories Master</a></li>
-            <li><i class="fas fa-edit"></i><a href="#">Product Master</a></li>
-            <li><i class="fab fa-cc-visa"></i><a href="#">Order Master</a></li>
-            <li><i class="fas fa-hamburger"></i><a href="#">User Master</a></li>
-            <li><i class="fas fa-chart-line"></i><a href="#">Contact Us</a></li>
+            <a href="dashboard.php" class="li-active"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
+            <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
+            <a href=""><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
+            <a href=""><i class="fas fa-edit"></i><span>Product Master</span></a>
+            <a href=""><i class="fab fa-cc-visa"></i><span>Order Master</span></a>
+            <a href=""><i class="fas fa-hamburger"></i><span>User Master</span></a>
+            <a href=""><i class="fas fa-chart-line"></i><span>Contact Us</span></a>
         </div>
     </section>
 
@@ -48,7 +48,10 @@
 
             <div class="profile">
                 <i class="far fa-bell"></i>
-                <img src="assets/images/1.jpg" alt="">
+                <img class="logot_popup_btn" src="assets/images/1.jpg" alt="">
+                <div class="logout_popup_wraper">
+                    <a href="logout.php">Logout</a>
+                </div>
             </div>
         </div>
 
@@ -91,8 +94,16 @@
 
 
     <script>
-        $('#menu-btn').click(function(){
-            $('#menu').toggleClass('active')
+        $(document).ready(function(){
+            $('#menu-btn').click(function(){
+                $('#menu').toggleClass('active')
+            })
+
+            $('.logot_popup_btn').click(function(){
+                $('.logout_popup_wraper').toggleClass('logout_popup_active')
+            })
+
+
         })
     </script>
 </body>
