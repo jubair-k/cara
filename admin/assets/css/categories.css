@@ -50,3 +50,15 @@
     display: block;
     width: 100%;
 }
+
+.exist_alert{
+    color: crimson;
+    font-style: italic;
+    font-size: 13px;
+}
+
+@media (max-width:477px) {
+    .interface_header{
+        margin: 100px 15px 30px 15px;
+    }
+}

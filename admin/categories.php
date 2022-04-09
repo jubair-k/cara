@@ -63,11 +63,23 @@
 
         <form class="board" id="addctegories_form">
             <label for="">Categories</label>
-            <input type="text" placeholder="Enter categories name" id="categoriesname">
+            <input type="text" placeholder="Enter categories name" id="categoriesname" require>
+            <span class="exist_alert"></span>
             <input type="submit" class="submit" value="Submit">
         </form>
 
         <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Categories</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody class="categories_tbody">
+
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -87,6 +99,29 @@
                 $('#addctegories_form').slideToggle('slow');
             })
 
+            function loadCategories(){
+                let formData = new FormData();
+                formData.append('loadCategories','post');
+                fetch('assets/process/categories-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    console.log(data);
+                    trs="";
+                    for (const row of data.categs) {
+                        trs+=`<tr>
+                                <td>${row.categories}</td>
+                            </tr>
+                        `
+                    }
+                    $('.categories_tbody').html(trs);
+                })
+            }
+
+            loadCategories();
+
             $('#addctegories_form').on('submit',function(){
                 event.preventDefault();
                 if($('#categoriesname').val()!=""){
@@ -102,6 +137,13 @@
                         //console.log(data);
                         if(data=="ok"){
                             $('#categoriesname').val('');
+                        }
+
+                        if(data.exist){
+                            $('.exist_alert').text(data.exist);
+                        }
+                        else{
+                            $('.exist_alert').text("");
                         }
                     })
                 }
