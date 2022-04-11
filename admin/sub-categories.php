@@ -64,7 +64,7 @@
         <form class="board" id="addsub_ctegories_form">
             <label for="">Categories</label>
             <select name="categoriesId" id="categoriesId" required>
-                <option value>Select Categories</option>
+
             </select>
             <label for="">Sub Categories</label>
             <input type="text" placeholder="Enter sub categories" id="subcategoriesname" autocomplete="off" required>
@@ -99,15 +99,35 @@
                 $('.logout_popup_wraper').toggleClass('logout_popup_active')
             })
 
-
             $('#addsubcategoriesBtn').click(function(){
                 $('#addsub_ctegories_form').slideToggle('slow');
             })
 
-            function loadCategories(){
+            function loadCategoriesId(){
                 let formData = new FormData();
-                formData.append('loadCategories','post');
-                fetch('assets/process/categories-process.php', {
+                formData.append('loadCategoriesId','post');
+                fetch('assets/process/sub-categories-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    opts=`<option value>Select Categories</option>`;
+                    for (const row of data.categs) {
+                        opts+=`<option value="${row.id}">${row.categories}</option>`;
+                    }
+                    $('#categoriesId').html(opts);
+                })
+            }
+
+            loadCategoriesId()
+
+            
+            function loadSubCategories(){
+                let formData = new FormData();
+                formData.append('loadSubCategories','post');
+                fetch('assets/process/sub-categories-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -115,34 +135,34 @@
                 .then( data => {
                     //console.log(data);
                     trs="";
-                    for (const row of data.categs) {
+                    for (const row of data.subcategs) {
                         trs+=`<tr data-id="${row.id}">
-                                <td>${row.categories}</td>`
+                                <td data-id="${row.categories_id}">${row.categories}</td>
+                                <td>${row.sub_categories}</td>`
                         if(row.status=='1'){
                             stbtn=`<button class="status_active stbtn">Active</button>`
                         }else{
                             stbtn=`<button class="status_deactive stbtn">Deactive</button>`
                         }
 
-
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_categ">Edit</button> <button class="delete_categ">Delete</button></td>
-                            </tr>
-                        `
+                        trs+=`<td class="operate_td">${stbtn} <button class="edite_subcateg">Edit</button> <button class="delete_subcateg">Delete</button></td>
+                            </tr>`
                     }
-                    $('.categories_tbody').html(trs);
+                    $('.subcategories_tbody').html(trs);
                 })
             }
 
-            loadCategories();
+            loadSubCategories();
 
-            $('#addctegories_form').on('submit',function(){
+            $('#addsub_ctegories_form').on('submit',function(){
                 event.preventDefault();
-                if($('#categoriesname').val()!=""){
+                if($('#categoriesId').val()!="" && $('#subcategoriesname').val()!=""){
                     if($('.submit').val()=="Submit"){
                         let formData = new FormData();
-                        formData.append('addCategories','post');
-                        formData.append('categname',$('#categoriesname').val())
-                        fetch('assets/process/categories-process.php', {
+                        formData.append('addsubCategories','post');
+                        formData.append('categselect',$('#categoriesId').val())
+                        formData.append('subcategname',$('#subcategoriesname').val())
+                        fetch('assets/process/sub-categories-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -150,8 +170,9 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesname').val('');
-                                loadCategories()
+                                $('#categoriesId').val('');
+                                $('#subcategoriesname').val('');
+                                loadSubCategories()
                             }
 
                             if(data.exist){
@@ -165,10 +186,11 @@
 
                     if($('.submit').val()=="Save"){
                         let formData = new FormData();
-                        formData.append('saveCategories','post');
-                        formData.append('categsavename',$('#categoriesname').val())
-                        formData.append('categsave',categedit_id)
-                        fetch('assets/process/categories-process.php', {
+                        formData.append('saveSubcategories','post');
+                        formData.append('savecategsel',$('#categoriesId').val())
+                        formData.append('subcategsavename',$('#subcategoriesname').val())
+                        formData.append('subcategsave',subcategedit_id)
+                        fetch('assets/process/sub-categories-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -176,9 +198,10 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesname').val('');
-                                loadCategories()
-                                $('#addctegories_form').slideUp('fast');
+                                $('#categoriesId').val('');
+                                $('#subcategoriesname').val('');
+                                loadSubCategories()
+                                $('#addsub_ctegories_form').slideUp('fast');
                                 $('.submit').val('Submit')
                             }
 
@@ -193,12 +216,12 @@
                 }
             })
 
-            $('body').on('click','.delete_categ',function(){
-                categ_id=this.parentElement.parentElement.dataset.id;
+            $('body').on('click','.delete_subcateg',function(){
+                subcateg_id=this.parentElement.parentElement.dataset.id;
                 let formData = new FormData();
-                formData.append('deletecateg','post');
-                formData.append('categ',categ_id)
-                fetch('assets/process/categories-process.php', {
+                formData.append('deletesubcateg','post');
+                formData.append('subcateg',subcateg_id)
+                fetch('assets/process/sub-categories-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -206,18 +229,18 @@
                 .then( data => {
                     //console.log(data);
                     if(data=="success"){
-                        loadCategories()
+                        loadSubCategories()
                     }
                 })
             })
 
             $('body').on('click','.stbtn',function(){
                 if(this.classList.contains('status_active')){
-                    categ_id=this.parentElement.parentElement.dataset.id;
+                    subcateg_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('deactivecateg','post');
-                    formData.append('categ',categ_id)
-                    fetch('assets/process/categories-process.php', {
+                    formData.append('deactivesubcateg','post');
+                    formData.append('subcateg',subcateg_id)
+                    fetch('assets/process/sub-categories-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -225,17 +248,17 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadCategories()
+                            loadSubCategories()
                         }
                     })
                 }
 
                 if(this.classList.contains('status_deactive')){
-                    categ_id=this.parentElement.parentElement.dataset.id;
+                    subcateg_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('activecateg','post');
-                    formData.append('categ',categ_id)
-                    fetch('assets/process/categories-process.php', {
+                    formData.append('activesubcateg','post');
+                    formData.append('subcateg',subcateg_id)
+                    fetch('assets/process/sub-categories-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -243,17 +266,18 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadCategories()
+                            loadSubCategories()
                         }
                     })
                 }
             })
 
-            $('body').on('click','.edite_categ',function(){
-                categedit_id=this.parentElement.parentElement.dataset.id
-                $('#addctegories_form').slideDown('fast');
-                $('#categoriesname').val(this.parentElement.parentElement.children[0].textContent)
-                $('.submit').val('Save')
+            $('body').on('click','.edite_subcateg',function(){
+                subcategedit_id=this.parentElement.parentElement.dataset.id
+                $('#addsub_ctegories_form').slideDown('fast');
+                $('#subcategoriesname').val(this.parentElement.parentElement.children[1].textContent);
+                $('#categoriesId').val(this.parentElement.parentElement.children[0].dataset.id);
+                $('.submit').val('Save');
             })
 
 
