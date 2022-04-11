@@ -57,6 +57,35 @@
     font-size: 13px;
 }
 
+.operate_td{
+    display: flex;
+    justify-content: flex-end;
+}
+.operate_td button{
+    outline: none;
+    border: none;
+    padding: 8px 10px;
+    border-radius: 4px;
+    margin: 0px 5px;
+    cursor: pointer;
+    font-weight: 400; 
+    color: #fff;
+    text-transform: uppercase;
+    font-size: 11px;
+}
+.status_active{
+    background-color: #00c292;
+}
+.status_deactive{
+    background-color: #fb9678;
+}
+.operate_td button:nth-child(2){
+    background-color: #7B74EC;
+}
+.operate_td button:nth-child(3){
+    background-color: #FF0000;
+}
+
 @media (max-width:477px) {
     .interface_header{
         margin: 100px 15px 30px 15px;
