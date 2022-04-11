@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/categories.css">
-    <title>Categories</title>
+    <link rel="stylesheet" href="assets/css/sub-categories.css">
+    <title>Sub Categories</title>
 </head>
 <body>
     <section id="menu">
@@ -26,8 +26,8 @@
 
         <div class="items">
             <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
-            <a href="categories.php" class="li-active"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
-            <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
+            <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
+            <a href="sub-categories.php" class="li-active"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
             <a href=""><i class="fas fa-edit"></i><span>Product Master</span></a>
             <a href=""><i class="fab fa-cc-visa"></i><span>Order Master</span></a>
             <a href=""><i class="fas fa-hamburger"></i><span>User Master</span></a>
@@ -57,13 +57,17 @@
         </div>
 
         <div class="interface_header">
-            <h3 class="i-name">Categories</h3>
-            <button id="addcategoriesBtn">Add Categories</button>
+            <h3 class="i-name">Sub Categories</h3>
+            <button class="green_buttons" id="addsubcategoriesBtn">Add Sub Categories</button>
         </div>
 
-        <form class="board" id="addctegories_form">
+        <form class="board" id="addsub_ctegories_form">
             <label for="">Categories</label>
-            <input type="text" placeholder="Enter categories name" id="categoriesname" autocomplete="off" required>
+            <select name="categoriesId" id="categoriesId" required>
+                <option value>Select Categories</option>
+            </select>
+            <label for="">Sub Categories</label>
+            <input type="text" placeholder="Enter sub categories" id="subcategoriesname" autocomplete="off" required>
             <span class="exist_alert"></span>
             <input type="submit" class="submit" value="Submit">
         </form>
@@ -73,10 +77,11 @@
                 <thead>
                     <tr>
                         <td>Categories</td>
+                        <td>Sub Categories</td>
                         <td></td>
                     </tr>
                 </thead>
-                <tbody class="categories_tbody">
+                <tbody class="subcategories_tbody">
 
                 </tbody>
             </table>
@@ -95,8 +100,8 @@
             })
 
 
-            $('#addcategoriesBtn').click(function(){
-                $('#addctegories_form').slideToggle('slow');
+            $('#addsubcategoriesBtn').click(function(){
+                $('#addsub_ctegories_form').slideToggle('slow');
             })
 
             function loadCategories(){

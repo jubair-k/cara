@@ -8,6 +8,17 @@
 .li-active{
     background: #554cd1 ;
 }
+.green_buttons{
+    padding: 8px 20px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    background-color: #16c455;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 20px;
+}
 
 body{
     width: 100%;
