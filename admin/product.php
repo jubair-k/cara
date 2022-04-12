@@ -85,7 +85,7 @@
 
             <div class="form_group">
                 <label for="">Product Name</label>
-                <input type="text" placeholder="Enter Product Name" id="prdctname" autocomplete="off" required>
+                <input type="text" placeholder="Enter Product Name" name="prdctname" id="prdctname" autocomplete="off" required>
                 <span class="exist_alert"></span>
             </div>
 
@@ -99,42 +99,42 @@
 
             <div class="form_group">
                 <label for="">MRP</label>
-                <input type="number" placeholder="Enter Product MRP" id="prdctmrp" autocomplete="off" required>
+                <input type="number" placeholder="Enter Product MRP" name="prdctmrp" id="prdctmrp" autocomplete="off" required>
             </div>
 
             <div class="form_group">
                 <label for="">Price</label>
-                <input type="number" placeholder="Enter Product Price" id="prdctprice" autocomplete="off" required>
+                <input type="number" placeholder="Enter Product Price" name="prdctprice" id="prdctprice" autocomplete="off" required>
             </div>
 
             <div class="form_group">
                 <label for="">Color</label>
-                <input type="text" placeholder="Enter Product Color" id="prdctcolor" autocomplete="off" >
+                <input type="text" placeholder="Enter Product Color" name="prdctcolor" id="prdctcolor" autocomplete="off" >
             </div>
 
             <div class="form_group">
                 <label for="">Brand</label>
-                <input type="text" placeholder="Enter Product Brand" id="prdctbrand" autocomplete="off" >
+                <input type="text" placeholder="Enter Product Brand" name="prdctbrand" id="prdctbrand" autocomplete="off" >
             </div>
 
             <div class="form_group">
                 <label for="">Offer</label>
-                <input type="number" placeholder="Enter Product Offer in %" id="prdctOffer" autocomplete="off" >
+                <input type="number" placeholder="Enter Product Offer in %" name="prdctOffer" id="prdctOffer" autocomplete="off" >
             </div>
 
             <div class="form_group">
                 <label for="">Offer Expaier Date</label>
-                <input type="Date" placeholder="Enter Product Brand" id="prdctofferdate" autocomplete="off" >
+                <input type="Date" placeholder="Enter Product Brand" name="prdctofferdate" id="prdctofferdate" autocomplete="off" >
             </div>
 
             <div class="form_group">
                 <label for="">Quantity</label>
-                <input type="Number" placeholder="Enter Product Quantity" id="prdctqty" autocomplete="off" required>
+                <input type="Number" placeholder="Enter Product Quantity" name="prdctqty" id="prdctqty" autocomplete="off" required>
             </div>
 
             <div class="form_group">
                 <label for="">Image</label>
-                <input type="File" placeholder="Upload Product Image" id="prdctimg" autocomplete="off" required>
+                <input type="File" placeholder="Upload Product Image" name="prdctimg" id="prdctimg" autocomplete="off" required>
             </div>
 
             <div class="form_group">
@@ -178,6 +178,72 @@
             $('#addproductBtn').click(function(){
                 $('#addproduct_form').slideToggle('slow');
             })
+
+            function loadCategoriesId(){
+                let formData = new FormData();
+                formData.append('loadCategoriesId','post');
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    opts=`<option value>Select Categories</option>`;
+                    for (const row of data.categs) {
+                        opts+=`<option value="${row.id}">${row.categories}</option>`;
+                    }
+                    $('#categoriesId').html(opts);
+
+                    sesnopts=`<option value>Select Season</option>`;
+                    for (const row of data.sesn) {
+                        sesnopts+=`<option value="${row.id}">${row.season}</option>`;
+                    }
+                    $('#seasonId').html(sesnopts);
+                })
+            }
+
+            loadCategoriesId()
+
+            $('#categoriesId').on('change',function(){
+                categselect=this.value;
+                let formData = new FormData();
+                formData.append('loadSubCategoriesId','post');
+                formData.append('categselect',categselect);
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    opts=`<option value>Select Sub Categories</option>`;
+                    for (const row of data.subcategs) {
+                        opts+=`<option value="${row.id}">${row.sub_categories}</option>`;
+                    }
+                    $('#sub_categoriesId').html(opts);
+                })
+            })
+
+            $('#addproduct_form').on('submit',function(){
+                event.preventDefault();
+                let form=document.getElementById('addproduct_form');                
+                let formData = new FormData(form)
+                fetch('assets/process/product-process.php',{
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    console.log(data);
+                    if(data.correct){
+                        $('.form_group input').val('');
+                        $('.form_group textarea').val('');
+                        $('.form_group select').val('');
+                    }
+                })
+            })
+
 
 
         })
