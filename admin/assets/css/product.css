@@ -1,0 +1,62 @@
+#interface .interface_header .i-name{
+    color: #444a53;
+    padding: 0px 0px 0 0px;
+    font-size: 24px;
+    font-weight: 700;
+    margin-top: 0px;
+}
+.interface_header{
+    background-color: #fff;
+    margin: 100px 30px 30px 30px;
+    padding: 20px;
+    border-radius: 5px;
+}
+#addproduct_form{
+    padding: 30px 15px;
+    display: none;
+}
+#addproduct_form .form_group{
+    width: 100%;
+    margin-bottom: 20px;
+}
+#addproduct_form .form_group label{
+    display: block;
+    margin-bottom: 5px;
+}
+#addproduct_form .form_group input,
+#addproduct_form .form_group select,
+#addproduct_form .form_group textarea{
+    display: block;
+    width: 100%;
+    padding: 8px 15px;
+    outline: none;
+    border-radius: 4px;
+    border: 1px solid #cfcfcf;
+    font-size: 1rem;
+}
+
+#addproduct_form .submit{
+    padding: 10px 20px;
+    outline: none;
+    border: none;
+    font-size: 1rem;
+    background-color: #554cd1;
+    color: #fff;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 25px;
+    display: block;
+    width: 100%;
+}
+
+
+
+
+
+
+
+@media (max-width:477px) {
+    .interface_header{
+        margin: 100px 15px 30px 15px;
+    }
+}
