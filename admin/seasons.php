@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/sub-categories.css">
-    <title>Sub Categories</title>
+    <link rel="stylesheet" href="assets/css/categories.css">
+    <title>Categories</title>
 </head>
 <body>
     <section id="menu">
@@ -27,8 +27,8 @@
         <div class="items">
             <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
             <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
-            <a href="sub-categories.php" class="li-active"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
-            <a href="seasons.php"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
+            <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
+            <a href="seasons.php" class="li-active"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
             <a href=""><i class="fas fa-edit"></i><span>Product Master</span></a>
             <a href=""><i class="fab fa-cc-visa"></i><span>Order Master</span></a>
             <a href=""><i class="fas fa-hamburger"></i><span>User Master</span></a>
@@ -58,17 +58,13 @@
         </div>
 
         <div class="interface_header">
-            <h3 class="i-name">Sub Categories</h3>
-            <button class="green_buttons" id="addsubcategoriesBtn">Add Sub Categories</button>
+            <h3 class="i-name">Categories</h3>
+            <button id="addcategoriesBtn">Add Categories</button>
         </div>
 
-        <form class="board" id="addsub_ctegories_form">
+        <form class="board" id="addctegories_form">
             <label for="">Categories</label>
-            <select name="categoriesId" id="categoriesId" required>
-
-            </select>
-            <label for="">Sub Categories</label>
-            <input type="text" placeholder="Enter sub categories" id="subcategoriesname" autocomplete="off" required>
+            <input type="text" placeholder="Enter categories name" id="categoriesname" autocomplete="off" required>
             <span class="exist_alert"></span>
             <input type="submit" class="submit" value="Submit">
         </form>
@@ -78,11 +74,10 @@
                 <thead>
                     <tr>
                         <td>Categories</td>
-                        <td>Sub Categories</td>
                         <td></td>
                     </tr>
                 </thead>
-                <tbody class="subcategories_tbody">
+                <tbody class="categories_tbody">
 
                 </tbody>
             </table>
@@ -100,35 +95,15 @@
                 $('.logout_popup_wraper').toggleClass('logout_popup_active')
             })
 
-            $('#addsubcategoriesBtn').click(function(){
-                $('#addsub_ctegories_form').slideToggle('slow');
+
+            $('#addcategoriesBtn').click(function(){
+                $('#addctegories_form').slideToggle('slow');
             })
 
-            function loadCategoriesId(){
+            function loadCategories(){
                 let formData = new FormData();
-                formData.append('loadCategoriesId','post');
-                fetch('assets/process/sub-categories-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    opts=`<option value>Select Categories</option>`;
-                    for (const row of data.categs) {
-                        opts+=`<option value="${row.id}">${row.categories}</option>`;
-                    }
-                    $('#categoriesId').html(opts);
-                })
-            }
-
-            loadCategoriesId()
-
-            
-            function loadSubCategories(){
-                let formData = new FormData();
-                formData.append('loadSubCategories','post');
-                fetch('assets/process/sub-categories-process.php', {
+                formData.append('loadCategories','post');
+                fetch('assets/process/categories-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -136,34 +111,34 @@
                 .then( data => {
                     //console.log(data);
                     trs="";
-                    for (const row of data.subcategs) {
+                    for (const row of data.categs) {
                         trs+=`<tr data-id="${row.id}">
-                                <td data-id="${row.categories_id}">${row.categories}</td>
-                                <td>${row.sub_categories}</td>`
+                                <td>${row.categories}</td>`
                         if(row.status=='1'){
                             stbtn=`<button class="status_active stbtn">Active</button>`
                         }else{
                             stbtn=`<button class="status_deactive stbtn">Deactive</button>`
                         }
 
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_subcateg">Edit</button> <button class="delete_subcateg">Delete</button></td>
-                            </tr>`
+
+                        trs+=`<td class="operate_td">${stbtn} <button class="edite_categ">Edit</button> <button class="delete_categ">Delete</button></td>
+                            </tr>
+                        `
                     }
-                    $('.subcategories_tbody').html(trs);
+                    $('.categories_tbody').html(trs);
                 })
             }
 
-            loadSubCategories();
+            loadCategories();
 
-            $('#addsub_ctegories_form').on('submit',function(){
+            $('#addctegories_form').on('submit',function(){
                 event.preventDefault();
-                if($('#categoriesId').val()!="" && $('#subcategoriesname').val()!=""){
+                if($('#categoriesname').val()!=""){
                     if($('.submit').val()=="Submit"){
                         let formData = new FormData();
-                        formData.append('addsubCategories','post');
-                        formData.append('categselect',$('#categoriesId').val())
-                        formData.append('subcategname',$('#subcategoriesname').val())
-                        fetch('assets/process/sub-categories-process.php', {
+                        formData.append('addCategories','post');
+                        formData.append('categname',$('#categoriesname').val())
+                        fetch('assets/process/categories-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -171,9 +146,8 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesId').val('');
-                                $('#subcategoriesname').val('');
-                                loadSubCategories()
+                                $('#categoriesname').val('');
+                                loadCategories()
                             }
 
                             if(data.exist){
@@ -187,11 +161,10 @@
 
                     if($('.submit').val()=="Save"){
                         let formData = new FormData();
-                        formData.append('saveSubcategories','post');
-                        formData.append('savecategsel',$('#categoriesId').val())
-                        formData.append('subcategsavename',$('#subcategoriesname').val())
-                        formData.append('subcategsave',subcategedit_id)
-                        fetch('assets/process/sub-categories-process.php', {
+                        formData.append('saveCategories','post');
+                        formData.append('categsavename',$('#categoriesname').val())
+                        formData.append('categsave',categedit_id)
+                        fetch('assets/process/categories-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -199,10 +172,9 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesId').val('');
-                                $('#subcategoriesname').val('');
-                                loadSubCategories()
-                                $('#addsub_ctegories_form').slideUp('fast');
+                                $('#categoriesname').val('');
+                                loadCategories()
+                                $('#addctegories_form').slideUp('fast');
                                 $('.submit').val('Submit')
                             }
 
@@ -217,12 +189,12 @@
                 }
             })
 
-            $('body').on('click','.delete_subcateg',function(){
-                subcateg_id=this.parentElement.parentElement.dataset.id;
+            $('body').on('click','.delete_categ',function(){
+                categ_id=this.parentElement.parentElement.dataset.id;
                 let formData = new FormData();
-                formData.append('deletesubcateg','post');
-                formData.append('subcateg',subcateg_id)
-                fetch('assets/process/sub-categories-process.php', {
+                formData.append('deletecateg','post');
+                formData.append('categ',categ_id)
+                fetch('assets/process/categories-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -230,18 +202,18 @@
                 .then( data => {
                     //console.log(data);
                     if(data=="success"){
-                        loadSubCategories()
+                        loadCategories()
                     }
                 })
             })
 
             $('body').on('click','.stbtn',function(){
                 if(this.classList.contains('status_active')){
-                    subcateg_id=this.parentElement.parentElement.dataset.id;
+                    categ_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('deactivesubcateg','post');
-                    formData.append('subcateg',subcateg_id)
-                    fetch('assets/process/sub-categories-process.php', {
+                    formData.append('deactivecateg','post');
+                    formData.append('categ',categ_id)
+                    fetch('assets/process/categories-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -249,17 +221,17 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadSubCategories()
+                            loadCategories()
                         }
                     })
                 }
 
                 if(this.classList.contains('status_deactive')){
-                    subcateg_id=this.parentElement.parentElement.dataset.id;
+                    categ_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('activesubcateg','post');
-                    formData.append('subcateg',subcateg_id)
-                    fetch('assets/process/sub-categories-process.php', {
+                    formData.append('activecateg','post');
+                    formData.append('categ',categ_id)
+                    fetch('assets/process/categories-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -267,18 +239,17 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadSubCategories()
+                            loadCategories()
                         }
                     })
                 }
             })
 
-            $('body').on('click','.edite_subcateg',function(){
-                subcategedit_id=this.parentElement.parentElement.dataset.id
-                $('#addsub_ctegories_form').slideDown('fast');
-                $('#subcategoriesname').val(this.parentElement.parentElement.children[1].textContent);
-                $('#categoriesId').val(this.parentElement.parentElement.children[0].dataset.id);
-                $('.submit').val('Save');
+            $('body').on('click','.edite_categ',function(){
+                categedit_id=this.parentElement.parentElement.dataset.id
+                $('#addctegories_form').slideDown('fast');
+                $('#categoriesname').val(this.parentElement.parentElement.children[0].textContent)
+                $('.submit').val('Save')
             })
 
 

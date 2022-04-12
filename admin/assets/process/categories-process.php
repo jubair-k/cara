@@ -57,8 +57,8 @@
         }
 
         if(isset($_POST['activecateg']) && !empty($_POST['activecateg'])){
-            $deact_categ="UPDATE categories SET status=:categst WHERE id=:categid";
-            $stmt=$pdo->prepare($deact_categ);
+            $act_categ="UPDATE categories SET status=:categst WHERE id=:categid";
+            $stmt=$pdo->prepare($act_categ);
             $stmt->execute(['categst'=>1,'categid'=>$_POST['categ']]);
             $array="success";
         }

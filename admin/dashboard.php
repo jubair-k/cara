@@ -27,6 +27,7 @@
             <a href="dashboard.php" class="li-active"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
             <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
             <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
+            <a href="seasons.php"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
             <a href=""><i class="fas fa-edit"></i><span>Product Master</span></a>
             <a href=""><i class="fab fa-cc-visa"></i><span>Order Master</span></a>
             <a href=""><i class="fas fa-hamburger"></i><span>User Master</span></a>
