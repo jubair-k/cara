@@ -15,8 +15,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <link rel="stylesheet" href="assets/css/categories.css">
-    <title>Categories</title>
+    <link rel="stylesheet" href="assets/css/seasons.css">
+    <title>Seasons</title>
 </head>
 <body>
     <section id="menu">
@@ -58,13 +58,13 @@
         </div>
 
         <div class="interface_header">
-            <h3 class="i-name">Categories</h3>
-            <button id="addcategoriesBtn">Add Categories</button>
+            <h3 class="i-name">Seasons</h3>
+            <button class="green_buttons" id="addseasonsBtn">Add Seasons</button>
         </div>
 
-        <form class="board" id="addctegories_form">
-            <label for="">Categories</label>
-            <input type="text" placeholder="Enter categories name" id="categoriesname" autocomplete="off" required>
+        <form class="board" id="addseasons_form">
+            <label for="">Seasons</label>
+            <input type="text" placeholder="Enter seasons name" id="seasonsname" autocomplete="off" required>
             <span class="exist_alert"></span>
             <input type="submit" class="submit" value="Submit">
         </form>
@@ -73,11 +73,11 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <td>Categories</td>
+                        <td>Seasons</td>
                         <td></td>
                     </tr>
                 </thead>
-                <tbody class="categories_tbody">
+                <tbody class="seasons_tbody">
 
                 </tbody>
             </table>
@@ -96,14 +96,14 @@
             })
 
 
-            $('#addcategoriesBtn').click(function(){
-                $('#addctegories_form').slideToggle('slow');
+            $('#addseasonsBtn').click(function(){
+                $('#addseasons_form').slideToggle('slow');
             })
 
-            function loadCategories(){
+            function loadSeasons(){
                 let formData = new FormData();
-                formData.append('loadCategories','post');
-                fetch('assets/process/categories-process.php', {
+                formData.append('loadSeasons','post');
+                fetch('assets/process/seasons-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -111,9 +111,9 @@
                 .then( data => {
                     //console.log(data);
                     trs="";
-                    for (const row of data.categs) {
+                    for (const row of data.sesns) {
                         trs+=`<tr data-id="${row.id}">
-                                <td>${row.categories}</td>`
+                                <td>${row.season}</td>`
                         if(row.status=='1'){
                             stbtn=`<button class="status_active stbtn">Active</button>`
                         }else{
@@ -121,24 +121,24 @@
                         }
 
 
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_categ">Edit</button> <button class="delete_categ">Delete</button></td>
+                        trs+=`<td class="operate_td">${stbtn} <button class="edite_sesn">Edit</button> <button class="delete_sesn">Delete</button></td>
                             </tr>
                         `
                     }
-                    $('.categories_tbody').html(trs);
+                    $('.seasons_tbody').html(trs);
                 })
             }
 
-            loadCategories();
+            loadSeasons();
 
-            $('#addctegories_form').on('submit',function(){
+            $('#addseasons_form').on('submit',function(){
                 event.preventDefault();
-                if($('#categoriesname').val()!=""){
+                if($('#seasonsname').val()!=""){
                     if($('.submit').val()=="Submit"){
                         let formData = new FormData();
-                        formData.append('addCategories','post');
-                        formData.append('categname',$('#categoriesname').val())
-                        fetch('assets/process/categories-process.php', {
+                        formData.append('addSeason','post');
+                        formData.append('sesnname',$('#seasonsname').val())
+                        fetch('assets/process/seasons-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -146,8 +146,8 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesname').val('');
-                                loadCategories()
+                                $('#seasonsname').val('');
+                                loadSeasons()
                             }
 
                             if(data.exist){
@@ -161,10 +161,10 @@
 
                     if($('.submit').val()=="Save"){
                         let formData = new FormData();
-                        formData.append('saveCategories','post');
-                        formData.append('categsavename',$('#categoriesname').val())
-                        formData.append('categsave',categedit_id)
-                        fetch('assets/process/categories-process.php', {
+                        formData.append('saveSeasons','post');
+                        formData.append('sesnsavename',$('#seasonsname').val())
+                        formData.append('sesnsave',sesnedit_id)
+                        fetch('assets/process/seasons-process.php', {
                             method: 'post',
                             body: formData,
                         })
@@ -172,9 +172,9 @@
                         .then( data => {
                             //console.log(data);
                             if(data=="ok"){
-                                $('#categoriesname').val('');
-                                loadCategories()
-                                $('#addctegories_form').slideUp('fast');
+                                $('#seasonsname').val('');
+                                loadSeasons()
+                                $('#addseasons_form').slideUp('fast');
                                 $('.submit').val('Submit')
                             }
 
@@ -189,12 +189,12 @@
                 }
             })
 
-            $('body').on('click','.delete_categ',function(){
-                categ_id=this.parentElement.parentElement.dataset.id;
+            $('body').on('click','.delete_sesn',function(){
+                sesn_id=this.parentElement.parentElement.dataset.id;
                 let formData = new FormData();
-                formData.append('deletecateg','post');
-                formData.append('categ',categ_id)
-                fetch('assets/process/categories-process.php', {
+                formData.append('deletesesn','post');
+                formData.append('sesn',sesn_id)
+                fetch('assets/process/seasons-process.php', {
                     method: 'post',
                     body: formData,
                 })
@@ -202,18 +202,18 @@
                 .then( data => {
                     //console.log(data);
                     if(data=="success"){
-                        loadCategories()
+                        loadSeasons()
                     }
                 })
             })
 
             $('body').on('click','.stbtn',function(){
                 if(this.classList.contains('status_active')){
-                    categ_id=this.parentElement.parentElement.dataset.id;
+                    sesn_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('deactivecateg','post');
-                    formData.append('categ',categ_id)
-                    fetch('assets/process/categories-process.php', {
+                    formData.append('deactivesesn','post');
+                    formData.append('sesn',sesn_id)
+                    fetch('assets/process/seasons-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -221,17 +221,17 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadCategories()
+                            loadSeasons()
                         }
                     })
                 }
 
                 if(this.classList.contains('status_deactive')){
-                    categ_id=this.parentElement.parentElement.dataset.id;
+                    sesn_id=this.parentElement.parentElement.dataset.id;
                     let formData = new FormData();
-                    formData.append('activecateg','post');
-                    formData.append('categ',categ_id)
-                    fetch('assets/process/categories-process.php', {
+                    formData.append('activesesn','post');
+                    formData.append('sesn',sesn_id)
+                    fetch('assets/process/seasons-process.php', {
                         method: 'post',
                         body: formData,
                     })
@@ -239,16 +239,16 @@
                     .then( data => {
                         //console.log(data);
                         if(data=="success"){
-                            loadCategories()
+                            loadSeasons()
                         }
                     })
                 }
             })
 
-            $('body').on('click','.edite_categ',function(){
-                categedit_id=this.parentElement.parentElement.dataset.id
-                $('#addctegories_form').slideDown('fast');
-                $('#categoriesname').val(this.parentElement.parentElement.children[0].textContent)
+            $('body').on('click','.edite_sesn',function(){
+                sesnedit_id=this.parentElement.parentElement.dataset.id
+                $('#addseasons_form').slideDown('fast');
+                $('#seasonsname').val(this.parentElement.parentElement.children[0].textContent)
                 $('.submit').val('Save')
             })
 
