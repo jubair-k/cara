@@ -63,12 +63,40 @@
         }
 
         if(isset($_POST['loadProducts']) && !empty($_POST['loadProducts'])){
-            $stmt=$pdo->query("SELECT categories.categories,sub_categories.sub_categories,product.product_name,product.mrp,product.price,product.qty,product.image,product.status,product.categories_id,product.sub_categories_id FROM product
+            $stmt=$pdo->query("SELECT categories.categories,sub_categories.sub_categories,product.product_name,product.mrp,product.price,product.qty,product.image,product.status,product.categories_id,product.sub_categories_id,product.id FROM product
             INNER JOIN categories ON categories.id=product.categories_id
             INNER JOIN sub_categories ON sub_categories.id=product.sub_categories_id");
             $array['prdct']=$stmt->fetchAll();
         }
 
+        if(isset($_POST['deactiveprdct']) && !empty($_POST['deactiveprdct'])){
+            $deact_prdct="UPDATE product SET status=:prdctst WHERE id=:prdctid";
+            $stmt=$pdo->prepare($deact_prdct);
+            $stmt->execute(['prdctst'=>0,'prdctid'=>$_POST['prdct']]);
+            $array="success";
+        }
+
+        if(isset($_POST['activeprdct']) && !empty($_POST['activeprdct'])){
+            $act_prdct="UPDATE product SET status=:prdctst WHERE id=:prdctid";
+            $stmt=$pdo->prepare($act_prdct);
+            $stmt->execute(['prdctst'=>1,'prdctid'=>$_POST['prdct']]);
+            $array="success";
+        }
+
+        if(isset($_POST['deleteprdct']) && !empty($_POST['deleteprdct'])){
+            $sel_img="SELECT product.image FROM product WHERE id=:imid";
+            $stmt=$pdo->prepare($sel_img);
+            $stmt->execute(['imid'=>$_POST['prdct']]);
+            $image_path=$stmt->fetch()->image;
+
+            $dlt_prdct="DELETE FROM product WHERE id=:prdctid";
+            $stmt=$pdo->prepare($dlt_prdct);
+            $stmt->execute(['prdctid'=>$_POST['prdct']]);
+
+            unlink('../../../media/products/'.$image_path);
+
+            $array="success";
+        }
 
 
         echo json_encode($array);

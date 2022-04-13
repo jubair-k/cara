@@ -151,6 +151,7 @@
                         <td>MRP</td>
                         <td>Price</td>
                         <td>Qty</td>
+                        <td></td>
                     </tr>
                 </thead>
                 <tbody class="products_tbody">
@@ -184,10 +185,10 @@
                 })
                 .then( res => res.json())
                 .then( data => {
-                    console.log(data);
+                    //console.log(data);
                     trs="";
                     for (const row of data.prdct) {
-                        trs+=`<tr>
+                        trs+=`<tr data-id=${row.id}>
                                 <td data-cat="${row.categories_id}">${row.categories}</td>
                                 <td data-subc="${row.sub_categories_id}">${row.sub_categories}</td>
                                 <td>${row.product_name}</td>
@@ -201,7 +202,7 @@
                             stbtn=`<button class="status_deactive stbtn">Deactive</button>`
                         }
 
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_subcateg">Edit</button> <button class="delete_subcateg">Delete</button></td>
+                        trs+=`<td class="operate_td">${stbtn} <button class="edite_prdct">Edit</button> <button class="delete_prdct">Delete</button></td>
                             </tr>`
                     }
                     $('.products_tbody').html(trs);
@@ -266,14 +267,73 @@
                 })
                 .then( res => res.json())
                 .then( data => {
-                    console.log(data);
+                    //console.log(data);
                     if(data.correct){
+                        loadProducts()
                         $('.form_group input').val('');
                         $('.form_group textarea').val('');
                         $('.form_group select').val('');
                     }
                 })
             })
+
+            $('body').on('click','.stbtn',function(){
+                if(this.classList.contains('status_active')){
+                    prdct_id=this.parentElement.parentElement.dataset.id;
+                    let formData = new FormData();
+                    formData.append('deactiveprdct','post');
+                    formData.append('prdct',prdct_id)
+                    fetch('assets/process/product-process.php', {
+                        method: 'post',
+                        body: formData,
+                    })
+                    .then( res => res.json())
+                    .then( data => {
+                        //console.log(data);
+                        if(data=="success"){
+                            loadProducts()
+                        }
+                    })
+                }
+
+                if(this.classList.contains('status_deactive')){
+                    prdct_id=this.parentElement.parentElement.dataset.id;
+                    let formData = new FormData();
+                    formData.append('activeprdct','post');
+                    formData.append('prdct',prdct_id)
+                    fetch('assets/process/product-process.php', {
+                        method: 'post',
+                        body: formData,
+                    })
+                    .then( res => res.json())
+                    .then( data => {
+                        //console.log(data);
+                        if(data=="success"){
+                            loadProducts()
+                        }
+                    })
+                }
+            })
+
+            $('body').on('click','.delete_prdct',function(){
+                prdct_id=this.parentElement.parentElement.dataset.id;
+                let formData = new FormData();
+                formData.append('deleteprdct','post');
+                formData.append('prdct',prdct_id)
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success"){
+                        loadProducts()
+                    }
+                })
+            })
+
+
 
 
 
