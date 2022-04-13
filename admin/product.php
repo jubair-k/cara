@@ -108,16 +108,6 @@
             </div>
 
             <div class="form_group">
-                <label for="">Color</label>
-                <input type="text" placeholder="Enter Product Color" name="prdctcolor" id="prdctcolor" autocomplete="off" >
-            </div>
-
-            <div class="form_group">
-                <label for="">Brand</label>
-                <input type="text" placeholder="Enter Product Brand" name="prdctbrand" id="prdctbrand" autocomplete="off" >
-            </div>
-
-            <div class="form_group">
                 <label for="">Offer</label>
                 <input type="number" placeholder="Enter Product Offer in %" name="prdctOffer" id="prdctOffer" autocomplete="off" >
             </div>
@@ -154,7 +144,13 @@
             <table width="100%">
                 <thead>
                     <tr>
-                        <td></td>
+                        <td>Categories</td>
+                        <td>Sub Categories</td>
+                        <td>Name</td>
+                        <td>Image</td>
+                        <td>MRP</td>
+                        <td>Price</td>
+                        <td>Qty</td>
                     </tr>
                 </thead>
                 <tbody class="products_tbody">
@@ -178,6 +174,41 @@
             $('#addproductBtn').click(function(){
                 $('#addproduct_form').slideToggle('slow');
             })
+
+            function loadProducts(){
+                let formData = new FormData();
+                formData.append('loadProducts','post');
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    console.log(data);
+                    trs="";
+                    for (const row of data.prdct) {
+                        trs+=`<tr>
+                                <td data-cat="${row.categories_id}">${row.categories}</td>
+                                <td data-subc="${row.sub_categories_id}">${row.sub_categories}</td>
+                                <td>${row.product_name}</td>
+                                <td><img src="../media/products/${row.image}"></td>
+                                <td>${row.mrp}</td>
+                                <td>${row.price}</td>
+                                <td>${row.qty}</td>`
+                        if(row.status=='1'){
+                            stbtn=`<button class="status_active stbtn">Active</button>`
+                        }else{
+                            stbtn=`<button class="status_deactive stbtn">Deactive</button>`
+                        }
+
+                        trs+=`<td class="operate_td">${stbtn} <button class="edite_subcateg">Edit</button> <button class="delete_subcateg">Delete</button></td>
+                            </tr>`
+                    }
+                    $('.products_tbody').html(trs);
+
+                })
+            }
+            loadProducts()
 
             function loadCategoriesId(){
                 let formData = new FormData();
