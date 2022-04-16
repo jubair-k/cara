@@ -17,7 +17,7 @@
             $array['subcategs']=$stmt->fetchAll();
         }
 
-        if(isset($_POST['prdctname']) && !empty($_POST['prdctname'])){
+        if(isset($_POST['addProducts']) && !empty($_POST['addProducts'])){
             if(isset($_FILES['prdctimg'])){
                 $errors=array();
                 $fileName=$_FILES["prdctimg"]["name"];
@@ -96,6 +96,82 @@
             unlink('../../../media/products/'.$image_path);
 
             $array="success";
+        }
+
+        if(isset($_POST['prdeditgetdata']) && !empty($_POST['prdeditgetdata'])){
+            $sel_edtprd="SELECT * FROM product WHERE id=:prdctid";
+            $stmt=$pdo->prepare($sel_edtprd);
+            $stmt->execute(['prdctid'=>$_POST['prdct']]);
+            $array=$stmt->fetch();
+        }
+
+        if(isset($_POST['saveProducts']) && !empty($_POST['saveProducts'])){
+            if(isset($_FILES['prdctimg']) && empty($_FILES['prdctimg']['name'])){
+                $updt_prdct="UPDATE product SET categories_id=:categid,sub_categories_id=:subcategid,product_name=:prdctnm,
+                mrp=:pmrp,price=:ppric,offer=:poff,offer_expdate=:poffexpdt,qty=:pqty,
+                description=:pdesc,meta_title=:pmetit,seasons_id=:psesid,best_seller=:pbsel WHERE id=:pid ";
+                $stmt=$pdo->prepare($updt_prdct);
+                $stmt->execute(['categid'=>$_POST['categoriesId'],'subcategid'=>$_POST['sub_categoriesId'],'prdctnm'=>$_POST['prdctname'],
+                'pmrp'=>$_POST['prdctmrp'],'ppric'=>$_POST['prdctprice'],'poff'=>$_POST['prdctOffer'],'poffexpdt'=>$_POST['prdctofferdate'],
+                'pqty'=>$_POST['prdctqty'],'pdesc'=>$_POST['prdctdescription'],'pmetit'=>$_POST['prdctmeta_title'],
+                'psesid'=>$_POST['seasonId'],'pbsel'=>$_POST['best_seller'],'pid'=>$_POST['prdctsave']]);
+                $array['correct']="ok";
+            }
+
+            if(isset($_FILES['prdctimg']) && !empty($_FILES['prdctimg']['name'])){
+                $errors=array();
+                $fileName=$_FILES["prdctimg"]["name"];
+                $fileSize=$_FILES["prdctimg"]["size"];
+                $fileType=$_FILES["prdctimg"]["type"];
+                $tmpPath=$_FILES["prdctimg"]["tmp_name"];
+
+                $fileNamCaps=strtolower($fileName);
+                $fileNameArr=explode(".",$fileNamCaps);
+                $fileExt=end($fileNameArr);
+
+                $extensions=array('jpg','png','jpeg');  
+
+                if(!in_array($fileExt,$extensions)){
+                    $errors[]="extention not allowed,please choose";
+                }
+
+                if(empty($errors)){
+                    $chk_imgexist="SELECT * FROM product WHERE image=:img";
+                    $stmt=$pdo->prepare($chk_imgexist);
+                    $stmt->execute(['img'=>$fileName]);
+                    $chk_count=$stmt->rowCount();
+                    if($chk_count==0){
+                        $newFile="../../../media/products/".$fileName;
+                        if(move_uploaded_file($tmpPath,$newFile)) {
+                            $sel_img="SELECT product.image FROM product WHERE id=:imid";
+                            $stmt=$pdo->prepare($sel_img);
+                            $stmt->execute(['imid'=>$_POST['prdctsave']]);
+                            $image_path=$stmt->fetch()->image;
+
+                            unlink('../../../media/products/'.$image_path);
+
+
+                            $updt_prdct="UPDATE product SET categories_id=:categid,sub_categories_id=:subcategid,product_name=:prdctnm,
+                            mrp=:pmrp,price=:ppric,offer=:poff,offer_expdate=:poffexpdt,qty=:pqty,image=:pimg,
+                            description=:pdesc,meta_title=:pmetit,seasons_id=:psesid,best_seller=:pbsel WHERE id=:pid ";
+                            $stmt=$pdo->prepare($updt_prdct);
+                            $stmt->execute(['categid'=>$_POST['categoriesId'],'subcategid'=>$_POST['sub_categoriesId'],'prdctnm'=>$_POST['prdctname'],
+                            'pmrp'=>$_POST['prdctmrp'],'ppric'=>$_POST['prdctprice'],'poff'=>$_POST['prdctOffer'],'poffexpdt'=>$_POST['prdctofferdate'],
+                            'pqty'=>$_POST['prdctqty'],'pimg'=>$fileName,'pdesc'=>$_POST['prdctdescription'],'pmetit'=>$_POST['prdctmeta_title'],
+                            'psesid'=>$_POST['seasonId'],'pbsel'=>$_POST['best_seller'],'pid'=>$_POST['prdctsave']]);
+            
+                            $array['correct']="ok";
+                        }      
+                    }
+                    else{
+                        $array['imgext']="image path already exist";
+                    }
+                }
+                else{
+                    $array['error']=$errors;
+                }
+
+            }
         }
 
 

@@ -124,7 +124,8 @@
 
             <div class="form_group">
                 <label for="">Image</label>
-                <input type="File" placeholder="Upload Product Image" name="prdctimg" id="prdctimg" autocomplete="off" required>
+                <input type="File" placeholder="Upload Product Image" name="prdctimg" id="prdctimg" autocomplete="off">
+                <span class="exist_alert" id="image_alert"></span>
             </div>
 
             <div class="form_group">
@@ -259,22 +260,64 @@
 
             $('#addproduct_form').on('submit',function(){
                 event.preventDefault();
-                let form=document.getElementById('addproduct_form');                
-                let formData = new FormData(form)
-                fetch('assets/process/product-process.php',{
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    if(data.correct){
-                        loadProducts()
-                        $('.form_group input').val('');
-                        $('.form_group textarea').val('');
-                        $('.form_group select').val('');
+                if($('.submit').val()=="Submit"){
+                    if(document.getElementById('prdctimg').files.length!=0){
+                        let form=document.getElementById('addproduct_form');                
+                        let formData = new FormData(form)
+                        formData.append('addProducts','post');
+                        fetch('assets/process/product-process.php',{
+                            method: 'post',
+                            body: formData,
+                        })
+                        .then( res => res.json())
+                        .then( data => {
+                            //console.log(data);
+                            if(data.correct){
+                                loadProducts()
+                                $('.form_group input').val('');
+                                $('.form_group textarea').val('');
+                                $('.form_group select').val('');
+                                $('#image_alert').text('');
+                            }
+
+                            if(data.imgext){
+                                $('#image_alert').text(data.imgext);
+                            }
+
+                        })
                     }
-                })
+                    else{
+                        $('#image_alert').text('Image required');
+                    }
+                }
+                if($('.submit').val()=="Save"){
+                    let form=document.getElementById('addproduct_form');                
+                    let formData = new FormData(form);
+                    formData.append('saveProducts','post');
+                    formData.append('prdctsave',prdctegedit_id);
+                    fetch('assets/process/product-process.php',{
+                        method: 'post',
+                        body: formData,
+                    })
+                    .then( res => res.json())
+                    .then( data => {
+                        //console.log(data);
+                        if(data.correct=="ok"){
+                            loadProducts()
+                            $('#addproduct_form').slideUp('fast');
+                            $('.submit').val('Submit')
+                            $('.form_group input').val('');
+                            $('.form_group textarea').val('');
+                            $('.form_group select').val('');
+                            $('#image_alert').text('');
+                        }
+
+                        if(data.imgext){
+                            $('#image_alert').text(data.imgext);
+                        }
+
+                    })
+                }
             })
 
             $('body').on('click','.stbtn',function(){
@@ -330,6 +373,38 @@
                     if(data=="success"){
                         loadProducts()
                     }
+                })
+            })
+
+            $('body').on('click','.edite_prdct',function(){
+                prdctegedit_id=this.parentElement.parentElement.dataset.id
+                let formData = new FormData();
+                formData.append('prdeditgetdata','post');
+                formData.append('prdct',prdctegedit_id)
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    $('#categoriesId').val(data.categories_id);
+                    $('#categoriesId').change();
+                    setTimeout(() => {
+                        $('#sub_categoriesId').val(data.sub_categories_id);
+                    }, 500);
+                    $('#seasonId').val(data.seasons_id);
+                    $('#prdctname').val(data.product_name);
+                    $('#best_seller').val(data.best_seller);
+                    $('#prdctmrp').val(data.mrp);
+                    $('#prdctprice').val(data.price);
+                    $('#prdctOffer').val(data.offer);
+                    $('#prdctofferdate').val(data.offer_expdate);
+                    $('#prdctqty').val(data.qty);
+                    $('#prdctdescription').val(data.description);
+                    $('#prdctmeta_title').val(data.meta_title);
+                    $('#addproduct_form').slideDown('fast');
+                    $('.submit').val('Save');
                 })
             })
 
