@@ -11,7 +11,7 @@
 </head>
 <body>
     <section id="header">
-        <a href="#"><img src="assets/img/logo.png" class="logo" alt=""></a>
+        <a href="#"><img src="assets/images/logo.png" class="logo" alt=""></a>
         
         <div>
             <ul id="navbar">
@@ -43,27 +43,27 @@
 
     <section id="feature" class="section-p1">
         <div class="fe-box">
-            <img src="assets/img/features/f1.png" alt="">
+            <img src="assets/images/features/f1.png" alt="">
             <h6>Free Shipping</h6>
         </div>
         <div class="fe-box">
-            <img src="assets/img/features/f2.png" alt="">
+            <img src="assets/images/features/f2.png" alt="">
             <h6>Online Order</h6>
         </div>
         <div class="fe-box">
-            <img src="assets/img/features/f3.png" alt="">
+            <img src="assets/images/features/f3.png" alt="">
             <h6>Save Money</h6>
         </div>
         <div class="fe-box">
-            <img src="assets/img/features/f4.png" alt="">
+            <img src="assets/images/features/f4.png" alt="">
             <h6>Promortions</h6>
         </div>
         <div class="fe-box">
-            <img src="assets/img/features/f5.png" alt="">
+            <img src="assets/images/features/f5.png" alt="">
             <h6>Happy Sell</h6>
         </div>
         <div class="fe-box">
-            <img src="assets/img/features/f6.png" alt="">
+            <img src="assets/images/features/f6.png" alt="">
             <h6>7 Support</h6>
         </div>
     </section>
@@ -73,7 +73,7 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
             <div class="pro">
-                <img src="assets/img/products/f1.jpg" alt="">
+                <img src="media/products/f1.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -89,7 +89,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f2.jpg" alt="">
+                <img src="media/products/f2.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f3.jpg" alt="">
+                <img src="media/products/f3.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -121,7 +121,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f4.jpg" alt="">
+                <img src="media/products/f4.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -137,7 +137,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f5.jpg" alt="">
+                <img src="media/products/f5.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -153,7 +153,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f6.jpg" alt="">
+                <img src="media/products/f6.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -169,7 +169,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f7.jpg" alt="">
+                <img src="media/products/f7.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -185,7 +185,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/f8.jpg" alt="">
+                <img src="media/products/f8.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -214,7 +214,7 @@
         <p>Summer Collection New Morden Design</p>
         <div class="pro-container">
             <div class="pro">
-                <img src="assets/img/products/n1.jpg" alt="">
+                <img src="media/products/n1.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -230,7 +230,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n2.jpg" alt="">
+                <img src="media/products/n2.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -246,7 +246,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n3.jpg" alt="">
+                <img src="media/products/n3.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -262,7 +262,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n4.jpg" alt="">
+                <img src="media/products/n4.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -278,7 +278,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n5.jpg" alt="">
+                <img src="media/products/n5.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -294,7 +294,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n6.jpg" alt="">
+                <img src="media/products/n6.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -310,7 +310,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n7.jpg" alt="">
+                <img src="media/products/n7.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -326,7 +326,7 @@
                 </div>
             </div>
             <div class="pro">
-                <img src="assets/img/products/n8.jpg" alt="">
+                <img src="media/products/n8.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
                     <h5>Cartoon Astronaut T-Shirts</h5>
@@ -424,11 +424,11 @@
             <h4>Install App</h4>
             <p>From App Store or Doogle Play</p>
             <div class="row">
-                <img src="assets/img/pay/app.jpg" alt="">
-                <img src="assets/img/pay/play.jpg" alt="">
+                <img src="assets/images/pay/app.jpg" alt="">
+                <img src="assets/images/pay/play.jpg" alt="">
             </div>
             <p>Secured Payment Gatways</p>
-            <img src="assets/img/pay/pay.png" alt="">
+            <img src="assets/images/pay/pay.png" alt="">
         </div>
 
         <div class="copyright">
