@@ -235,6 +235,7 @@ body{
     padding-top: 7px;
     color: #1a1a1a;
     font-size: 14px;
+    text-transform: capitalize;
 }
 #product1 .pro .des i{
     font-size: 12px;
@@ -245,6 +246,9 @@ body{
     font-size: 15px;
     font-weight: 700;
     color: #088178;
+}
+#product1 .pro .des h4 strike{
+    color: #606063;
 }
 #product1 .pro .des .cart{
     text-align: center;

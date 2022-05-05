@@ -80,7 +80,7 @@
         if(!empty($bestArr)){
             ?>
             <section id="product1" class="section-p1">
-                <h2>Featured Products</h2>
+                <h2>Best Sellers</h2>
                 <p>Summer Collection New Morden Design</p>
                 <div class="pro-container">
                     <?php
@@ -90,7 +90,7 @@
                                 <div class="pro">
                                     <img src="media/products/<?php echo $value->image ?>" alt="">
                                     <div class="des">
-                                        <h5><?php echo $value->product_name ?></h5>
+                                        <h5 class="pr_name"><?php echo $value->product_name ?></h5>
                                         <div class="star">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -98,7 +98,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <h4><?php echo $value->price ?></h4>
+                                        <h4><strike><?php echo "$".$value->mrp ?></strike> &nbsp; <?php echo $value->price ?></h4>
                                         <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                     </div>
                                 </div>
@@ -124,7 +124,7 @@
             ?>
             <section id="product1" class="section-p1">
                 <h2>New Arrivals</h2>
-                <p>Summer Collection New Morden Design</p>
+                <p>Winter Collection New Morden Design</p>
                 <div class="pro-container">
                     <?php
                         foreach ($newArr as $value) {
@@ -133,7 +133,7 @@
                                 <div class="pro">
                                     <img src="media/products/<?php echo $value->image ?>" alt="">
                                     <div class="des">
-                                        <h5><?php echo $value->product_name ?></h5>
+                                    <h5 class="pr_name"><?php echo $value->product_name ?></h5>
                                         <div class="star">
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
@@ -141,7 +141,7 @@
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <h4><?php echo $value->price ?></h4>
+                                        <h4><strike><?php echo "$".$value->mrp ?></strike> &nbsp; <?php echo $value->price ?></h4>
                                         <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                     </div>
                                 </div>

@@ -14,4 +14,9 @@ document.addEventListener('DOMContentLoaded',function(){
             nav.classList.remove('active')
         })
     }
+
+    prnames=document.querySelectorAll('.pr_name');
+    Array.from(prnames).forEach( ele => {
+        if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
+    })
 })
