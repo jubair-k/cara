@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Cara</title>
 </head>
 <body id="page1">
@@ -65,23 +66,21 @@
                     <?php
                         foreach ($bestArr as $value) {
                             ?>
-                            <a href="sproduct.html?prkeyv=<?php echo md5($value->id) ?>">
-                                <div class="pro">
-                                    <img src="media/products/<?php echo $value->image ?>" alt="">
-                                    <div class="des">
-                                        <h5 class="pr_name"><?php echo $value->product_name ?></h5>
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h4><strike><?php echo "$".$value->mrp ?></strike> &nbsp; <?php echo $value->price ?></h4>
-                                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo md5($value->id); ?>'">
+                                <img src="media/products/<?php echo $value->image; ?>" alt="">
+                                <div class="des">
+                                    <h5 class="pr_name"><?php echo $value->product_name; ?></h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
                                     </div>
+                                    <h4><strike><?php echo "$".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
+                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
-                            </a>
+                            </div>
                             <?php
                         }
                     ?>
@@ -108,23 +107,21 @@
                     <?php
                         foreach ($newArr as $value) {
                             ?>
-                            <a href="sproduct.html?prkeyv=<?php echo md5($value->id) ?>">
-                                <div class="pro">
-                                    <img src="media/products/<?php echo $value->image ?>" alt="">
-                                    <div class="des">
-                                    <h5 class="pr_name"><?php echo $value->product_name ?></h5>
-                                        <div class="star">
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                            <i class="fas fa-star"></i>
-                                        </div>
-                                        <h4><strike><?php echo "$".$value->mrp ?></strike> &nbsp; <?php echo $value->price ?></h4>
-                                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo md5($value->id); ?>'">
+                                <img src="media/products/<?php echo $value->image; ?>" alt="">
+                                <div class="des">
+                                <h5 class="pr_name"><?php echo $value->product_name; ?></h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
                                     </div>
+                                    <h4><strike><?php echo "$".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
+                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
-                            </a>
+                            </div>
                             <?php
                         }
                     ?>

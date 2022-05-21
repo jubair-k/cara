@@ -1,5 +1,5 @@
 <section id="header">
-    <a href="#"><img src="assets/images/logo.png" class="logo" alt=""></a>
+    <a href="index.php"><img src="assets/images/logo.png" class="logo" alt=""></a>
     
     <div>
         <ul id="navbar">
