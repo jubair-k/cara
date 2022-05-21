@@ -27,25 +27,7 @@
             </ul>
 
             <h4>Filter By Type</h4>
-            <ul class="filter_categories">
-                <li>
-                    <label>
-                        <input type="checkbox" value="Man"  name="category[]" class="category_filt">
-                        Shirt
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox" value="Man"  name="category[]" class="category_filt">
-                        T-Shirt
-                    </label>
-                </li>
-                <li>
-                    <label>
-                        <input type="checkbox" value="Man"  name="category[]" class="category_filt">
-                        Pants
-                    </label>
-                </li>
+            <ul class="filter_categories" id="subcategories">
             </ul>
 
         </div>
@@ -53,9 +35,10 @@
         <div id="interface">
             <div class="filter_nav_wraper">
                 <div class="filter_nav">
-                    <!-- <i id="filter-menu-btn" class="fas fa-bars"></i> -->
-                    <div id="filterNavLg">=</div>
-                    <div id="filterNavMd">:::</div>
+                    <i id="filterNavLg" class="fas fa-outdent filter_btn"></i>
+                    <i id="filterNavMd" class="fas fa-outdent filter_btn"></i>
+                    <!-- <div id="filterNavLg">=</div>
+                    <div id="filterNavMd">:::</div> -->
 
                     <select name="sortby" id="sortby">
                         <option value="">Sort By</option>

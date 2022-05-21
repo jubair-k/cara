@@ -203,7 +203,7 @@ body{
 #product1 .pro-container{
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     padding-top: 20px;
 }
 #product1 .pro{
@@ -985,18 +985,18 @@ footer .copyright{
     #subtotal{width: 100%;padding: 20px;}
 }
 
-#spinner{
+.spinner{
     position: relative;
     left: 0;
     right: 0;
-    top: 0;
+    top: 30px;
     bottom: 0;
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#spinner::after{
+.spinner::after{
     content: "";
     width: 80px;
     height: 80px;
