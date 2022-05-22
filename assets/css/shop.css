@@ -1,6 +1,6 @@
 .sectionWithFilter{
     position: relative;
-    overflow: hidden;
+    height: 100%;    
 }
 
 .filter_container{
@@ -96,6 +96,27 @@
     z-index: 99;
 }
 
+.filt_bts_wraper{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.filt_bts_wraper button{
+    outline: none;
+    border: solid 1px #000;
+    background-color: #fff;
+    padding: 10px 25px;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: 600;
+}
+#applayFilter{
+    background-color: #000;
+    color: #fff;
+}
+
 
 @media (max-width:820px) {
     
@@ -128,6 +149,13 @@
     }
     .fliter_active_md{
         left: 20px;
+    }
+
+    .filt_bts_wraper button{
+        padding: 8px 15px;
+        border-radius: 5px;
+        font-size: 14px;
+        font-weight: 600;
     }
 
 }

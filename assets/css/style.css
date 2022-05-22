@@ -482,9 +482,15 @@ footer .copyright{
     color: #fff;
 }
 #pagination{
-    text-align: center;
+    width: 100%;
+    height: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 #pagination a{
+    display: block;
+    margin: 5px;
     text-decoration: none;
     background-color: #088178;
     padding: 15px 20px;
@@ -891,6 +897,16 @@ footer .copyright{
     /* contact section */
     #form-details {padding: 40px;}
     #form-details form{width: 50%;}
+
+    /* pagination */
+    #pagination a{
+        margin: 5px;
+        padding: 10px 15px;
+    }
+    #pagination a i{
+        font-size: 16px;
+        font-weight: 600;
+    }
 }
 
 @media (max-width:477px) {

@@ -30,6 +30,11 @@
             <ul class="filter_categories" id="subcategories">
             </ul>
 
+            <div class="filt_bts_wraper">
+                <button id="resetFilter">Reset</button>
+                <button id="applayFilter">Applay filter</button>
+            </div>
+
         </div>
 
         <div id="interface">
@@ -41,10 +46,10 @@
                     <div id="filterNavMd">:::</div> -->
 
                     <select name="sortby" id="sortby">
-                        <option value="">Sort By</option>
-                        <option value="">Newest</option>
-                        <option value="">Price: Low to High</option>
-                        <option value="">Price: High to Low</option>
+                        <option value="0">SORT BY</option>
+                        <option value="new">Newest</option>
+                        <option value="low">Price: Low to High</option>
+                        <option value="high">Price: High to Low</option>
                     </select>
                 </div>
             </div>
@@ -56,9 +61,7 @@
     </section>
 
     <section id="pagination">
-        <a href="#">1</a>
-        <a href="#">2</a>
-        <a href="#"><i class="fal fa-long-arrow-alt-right"></i></a>
+        <!-- <a href="#"><i class="fal fa-long-arrow-alt-right"></i></a> -->
     </section>
 
     <section id="newsletter" class="section-p1 section-m1">
