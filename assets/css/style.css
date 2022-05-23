@@ -493,6 +493,7 @@ footer .copyright{
     margin: 5px;
     text-decoration: none;
     background-color: #088178;
+    border: solid 1px #088178;
     padding: 15px 20px;
     border-radius: 4px;
     color: #fff;
@@ -511,6 +512,7 @@ footer .copyright{
 #prodetails .single-pro-image{
     width: 40%;
     margin-right: 50px;
+    overflow: hidden;
 }
 .small-img-group{
     display: flex;

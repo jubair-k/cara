@@ -111,10 +111,16 @@
     border-radius: 5px;
     font-size: 16px;
     font-weight: 600;
+    cursor: pointer;
 }
 #applayFilter{
     background-color: #000;
     color: #fff;
+}
+
+#pagination .page_active{
+    background-color: #fff;
+    color: #088178;
 }
 
 

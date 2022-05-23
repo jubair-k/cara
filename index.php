@@ -66,7 +66,7 @@
                     <?php
                         foreach ($bestArr as $value) {
                             ?>
-                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo md5($value->id); ?>'">
+                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo $value->id; ?>'">
                                 <img src="media/products/<?php echo $value->image; ?>" alt="">
                                 <div class="des">
                                     <h5 class="pr_name"><?php echo $value->product_name; ?></h5>
@@ -107,7 +107,7 @@
                     <?php
                         foreach ($newArr as $value) {
                             ?>
-                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo md5($value->id); ?>'">
+                            <div class="pro" onclick="window.location.href='sproduct.html?prkeyv=<?php echo $value->id; ?>'">
                                 <img src="media/products/<?php echo $value->image; ?>" alt="">
                                 <div class="des">
                                 <h5 class="pr_name"><?php echo $value->product_name; ?></h5>

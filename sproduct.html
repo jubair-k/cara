@@ -36,9 +36,8 @@
     </section>
 
     <section id="prodetails" class="section-p1">
-        <div class="single-pro-image">
+        <div class="single-pro-image" id="imgContainer">
             <img src="media/products/f1.jpg" width="100%" id="mainImg" alt="">
-
         </div>
 
         <div class="single-pro-details">
@@ -195,19 +194,20 @@
     </footer>
 
     <script>
-        document.addEventListener('DOMContentLoaded',function(){
-            let mainImg=document.getElementById('mainImg')
-            let smallimg=document.getElementsByClassName('small-img')
+        // document.addEventListener('DOMContentLoaded',function(){
+        //     let mainImg=document.getElementById('mainImg')
+        //     let smallimg=document.getElementsByClassName('small-img')
 
-            for (const img of smallimg) {
-                img.onclick = function(){
-                    mainImg.src=this.src
-                }
-            }
-        })
+        //     for (const img of smallimg) {
+        //         img.onclick = function(){
+        //             mainImg.src=this.src
+        //         }
+        //     }
+        // })
     </script>
 
-    <script src="script.js"></script>
+    <script src="assets/js/script.js"></script>
+    <script src="assets/js/sproduct.js"></script>
 </body>
 
 </html>

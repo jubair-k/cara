@@ -109,6 +109,8 @@ document.addEventListener('DOMContentLoaded',function(){
     // pagination
     $('body').on('click','.paginations',function(e){
         e.preventDefault();
+        $('.paginations').removeClass('page_active');
+        $(this).addClass('page_active');
         checkedItems=document.querySelectorAll('input[name=subcategory]:checked');
         subcategoriesArr=[];
         if(checkedItems.length>0){
@@ -188,6 +190,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                 </li>`
             }
             document.getElementById('subcategories').innerHTML=subcategories;
+            $('#applayFilter').click();
         })
 
     })
@@ -244,11 +247,59 @@ document.addEventListener('DOMContentLoaded',function(){
                 if(data.count>1) pages+=`<a href="#" data-page="${i}" class="paginations">${i+1}</a>`;
             }
             document.getElementById('pagination').innerHTML=pages;
+            if($(window).width()<830){ $("#filterNavMd").click() };
         })
     })
 
+    // sort by
     $('#sortby').on('change',function(){
-        console.log(this.value);
+        sortbyVal=this.value;
+        pageNum=$('.page_active').attr('data-page');
+        if(pageNum==undefined || pageNum==""){pageNum=0};
+        checkedItems=document.querySelectorAll('input[name=subcategory]:checked');
+        subcategoriesArr=[];
+        if(checkedItems.length>0){
+            Array.from(checkedItems).map( ele => subcategoriesArr.push(ele.value) );
+        }
+        selectCategory=$('input[name=category]:checked').val();
+        document.getElementById('proContainer').innerHTML=`<div class="spinner"></div>`;
+        var formData=new FormData();
+        formData.append('fun','pagination');
+        formData.append('page',pageNum);
+        if(selectCategory!="" && selectCategory!=null) formData.append('categ',selectCategory);
+        if(subcategoriesArr.length>0 && subcategoriesArr!=null) formData.append('subcateg',subcategoriesArr);
+        if(sortbyVal!="" && sortbyVal!=null) formData.append('sortby',sortbyVal);
+        fetch("assets/process/shop-process.php",{
+            method:"POST",
+            body:formData
+        })
+        .then( res => res.json() )
+        .then( data => {
+            //console.log(data);
+            products="";
+            for (const row of data.prdct) {
+                products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
+                                <img src="media/products/${row.image}" alt="">
+                                <div class="des">
+                                <h5 class="pr_name">${row.product_name}</h5>
+                                    <div class="star">
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                        <i class="fas fa-star"></i>
+                                    </div>
+                                    <h4><strike>$${row.mrp}</strike> &nbsp; ${row.price}</h4>
+                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                </div>
+                            </div>`
+            }
+            document.getElementById('proContainer').innerHTML=products;
+            prnames=document.querySelectorAll('.pr_name');
+            Array.from(prnames).forEach( ele => {
+                if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
+            }) 
+        })
     })
 
 })
