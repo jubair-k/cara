@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',function(){
         })
         .then( res => res.json() )
         .then( data => {
-            //console.log(data);
+            console.log(data);
             products="";
             for (const row of data.prdct) {
                 products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
