@@ -3,18 +3,39 @@ document.addEventListener('DOMContentLoaded',function(){
         // let spinner=document.createElement('div');
         // spinner.id="spinner";
         document.getElementById('proContainer').innerHTML=`<div class="spinner"></div>`;
+        if(localStorage.getItem('cara')){
+            localObj=JSON.parse(localStorage.getItem('cara'));
+        } else{
+            localObj={
+                categories:"",
+                subcategories:"",
+                sortby:"0",
+                page:"0"
+            }
+            localStorage.setItem("cara",JSON.stringify(localObj));  
+        }
+        selectCategory=localObj.categories;
+        subcategoriesArr=localObj.subcategories;
+        sortbyVal=localObj.sortby;
+        pageNum=localObj.page;
+
         var formData=new FormData();
-        formData.append('page','shop');
+        formData.append('pages','shop');
+        formData.append('page',pageNum);
+        if(selectCategory!="" && selectCategory!=null) formData.append('categ',selectCategory);
+        if(subcategoriesArr.length>0 && subcategoriesArr!=null) formData.append('subcateg',subcategoriesArr);
+        if(sortbyVal!="" && sortbyVal!=null) formData.append('sortby',sortbyVal);
+
         fetch("assets/process/shop-process.php",{
             method:"POST",
             body:formData
         })
         .then( res => res.json() )
         .then( data => {
-            //console.log(data);
+            console.log(data);
             products="";
             for (const row of data.prdct) {
-                products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
+                products+=`<div class="pro" data-id="${row.id}">
                                 <img src="media/products/${row.image}" alt="">
                                 <div class="des">
                                 <h5 class="pr_name">${row.product_name}</h5>
@@ -38,43 +59,57 @@ document.addEventListener('DOMContentLoaded',function(){
 
             categories=``;
             for (const row of data.categ) {
-                categories+=`<li>
-                                <label>
-                                    <input type="radio" value="${row.id}"  name="category" class="category_filt">
-                                    ${row.categories}
-                                </label>
-                            </li>`;
+                if(row.id==selectCategory){
+                    categories+=`<li>
+                                    <label>
+                                        <input type="radio" value="${row.id}"  name="category" class="category_filt" checked>
+                                        ${row.categories}
+                                    </label>
+                                </li>`;
+                } else{
+                    categories+=`<li>
+                                    <label>
+                                        <input type="radio" value="${row.id}"  name="category" class="category_filt">
+                                        ${row.categories}
+                                    </label>
+                                </li>`;
+                }
             }
             document.getElementById('categories').innerHTML=categories;
 
             subcategories="";
             for (const row of data.allsubcateg) {
-                subcategories+=`<li>
-                                    <label>
-                                        <input type="checkbox" value="${row.id}"  name="subcategory" class="category_filt">
-                                        ${row.sub_categories}
-                                    </label>
-                                </li>`
+                if(subcategoriesArr.includes(row.id)){
+                    subcategories+=`<li>
+                                        <label>
+                                            <input type="checkbox" value="${row.id}"  name="subcategory" class="category_filt" checked>
+                                            ${row.sub_categories}
+                                        </label>
+                                    </li>`;
+                } else{
+                    subcategories+=`<li>
+                                        <label>
+                                            <input type="checkbox" value="${row.id}"  name="subcategory" class="category_filt">
+                                            ${row.sub_categories}
+                                        </label>
+                                    </li>`;
+                }
             }
             document.getElementById('subcategories').innerHTML=subcategories;
 
             pages="";
-            for (let i = 0; i <data.count ; i++) {
-                if(data.count>1){
-                    pages+=`
-                    <a href="#" data-page="${i}" class="paginations">${i+1}</a>`
+            if(data.count>1){
+                for (let i = 0; i <data.count ; i++) {
+                    if(i==pageNum){
+                        pages+=`<a href="#" data-page="${i}" class="paginations page_active">${i+1}</a>`;
+                    } else{
+                        pages+=`<a href="#" data-page="${i}" class="paginations">${i+1}</a>`;
+                    }
                 }
             }
             document.getElementById('pagination').innerHTML=pages;
-        })    
-
-        localObj={
-            categories:"",
-            subcategories:"",
-            sortby:"",
-            page:"0"
-        }
-        localStorage.setItem("cara",JSON.stringify(localObj));
+            $('#sortby').val(sortbyVal);
+        })   
     }
 
     loadProducts()
@@ -144,7 +179,7 @@ document.addEventListener('DOMContentLoaded',function(){
             //console.log(data);
             products="";
             for (const row of data.prdct) {
-                products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
+                products+=`<div class="pro" data-id="${row.id}">
                                 <img src="media/products/${row.image}" alt="">
                                 <div class="des">
                                 <h5 class="pr_name">${row.product_name}</h5>
@@ -236,7 +271,7 @@ document.addEventListener('DOMContentLoaded',function(){
             //console.log(data);
             products="";
             for (const row of data.filter) {
-                products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
+                products+=`<div class="pro" data-id="${row.id}">
                                 <img src="media/products/${row.image}" alt="">
                                 <div class="des">
                                 <h5 class="pr_name">${row.product_name}</h5>
@@ -303,7 +338,7 @@ document.addEventListener('DOMContentLoaded',function(){
             //console.log(data);
             products="";
             for (const row of data.prdct) {
-                products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
+                products+=`<div class="pro" data-id="${row.id}">
                                 <img src="media/products/${row.image}" alt="">
                                 <div class="des">
                                 <h5 class="pr_name">${row.product_name}</h5>
@@ -332,6 +367,16 @@ document.addEventListener('DOMContentLoaded',function(){
                 localStorage.setItem("cara",JSON.stringify(localObj));
             }
         })
+    })
+
+    // click the single product
+    $('#proContainer').on('click','.pro',function(){
+        if(localStorage.getItem("cara")){
+            localObj=JSON.parse(localStorage.getItem("cara"));
+            localObj.product=this.dataset.id;
+            localStorage.setItem("cara",JSON.stringify(localObj));
+            window.location="sproduct.php";
+        }
     })
 
 })
