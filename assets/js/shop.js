@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded',function(){
         })
         .then( res => res.json() )
         .then( data => {
-            console.log(data);
+            //console.log(data);
             products="";
             for (const row of data.prdct) {
                 products+=`<div class="pro" onclick="window.location.href='sproduct.html?prkeyv=${row.id}'">
@@ -67,6 +67,14 @@ document.addEventListener('DOMContentLoaded',function(){
             }
             document.getElementById('pagination').innerHTML=pages;
         })    
+
+        localObj={
+            categories:"",
+            subcategories:"",
+            sortby:"",
+            page:"0"
+        }
+        localStorage.setItem("cara",JSON.stringify(localObj));
     }
 
     loadProducts()
@@ -109,6 +117,7 @@ document.addEventListener('DOMContentLoaded',function(){
     // pagination
     $('body').on('click','.paginations',function(e){
         e.preventDefault();
+        selectedPage=$(this).attr('data-page');
         $('.paginations').removeClass('page_active');
         $(this).addClass('page_active');
         checkedItems=document.querySelectorAll('input[name=subcategory]:checked');
@@ -157,6 +166,12 @@ document.addEventListener('DOMContentLoaded',function(){
                 if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
             }) 
             window.scrollTo(0, 0);
+
+            if(localStorage.getItem("cara")){
+                localObj=JSON.parse(localStorage.getItem("cara"));
+                localObj.page=selectedPage;
+                localStorage.setItem("cara",JSON.stringify(localObj));
+            }
         })
     })
 
@@ -204,6 +219,7 @@ document.addEventListener('DOMContentLoaded',function(){
             Array.from(checkedItems).map( ele => subcategoriesArr.push(ele.value) );
         }
         selectCategory=$('input[name=category]:checked').val();
+
         sortbyVal=$('#sortby').val()
         document.getElementById('proContainer').innerHTML=`<div class="spinner"></div>`;
         var formData=new FormData();
@@ -248,6 +264,15 @@ document.addEventListener('DOMContentLoaded',function(){
             }
             document.getElementById('pagination').innerHTML=pages;
             if($(window).width()<830){ $("#filterNavMd").click() };
+
+            if(selectCategory=="" || selectCategory==null){selectCategory=""};
+            localObj={
+                categories:selectCategory,
+                subcategories:subcategoriesArr,
+                sortby:sortbyVal,
+                page:"0"
+            }
+            localStorage.setItem("cara",JSON.stringify(localObj));
         })
     })
 
@@ -299,6 +324,13 @@ document.addEventListener('DOMContentLoaded',function(){
             Array.from(prnames).forEach( ele => {
                 if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
             }) 
+
+            if(localStorage.getItem("cara")){
+                localObj=JSON.parse(localStorage.getItem("cara"));
+                localObj.sortby=sortbyVal;
+                localObj.page=pageNum;
+                localStorage.setItem("cara",JSON.stringify(localObj));
+            }
         })
     })
 
