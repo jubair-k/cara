@@ -20,34 +20,17 @@
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image" id="imgContainer">
-            <!-- <img src="media/products/f1.jpg" width="100%" id="mainImg" alt=""> -->
         </div>
 
         <div class="single-pro-details" id="productDetails">
-            <!-- <h4>Men's Fashion T Shirt</h4>
-            <h2>$139.00</h2>
-            <select>
-                <option>Select Size</option>
-                <option>XL</option>
-                <option>XXL</option>
-                <option>Sall</option>
-                <option>Large</option>
-            </select>
-            <input type="number" value="1">
-            <button class="normal">Add To Cart</button>
-            <h4>Product Details</h4>
-            <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate harum dolorem molestias vero nihil
-                officia nobis aliquam nulla facilis quo illum in dolor minima tenetur voluptatum debitis, incidunt
-                dignissimos? Beatae suscipit quo autem qui. Veritatis maxime officia ipsum assumenda blanditiis aut
-                corrupti optio impedit illo beatae ad?</span> -->
         </div>
     </section>
 
     <section id="product1" class="section-p1">
         <h2>Featured Products</h2>
         <p>Summer Collection New Morden Design</p>
-        <div class="pro-container">
-            <div class="pro">
+        <div class="pro-container" id="sproductContainer">
+            <!-- <div class="pro">
                 <img src="media/products/f1.jpg" alt="">
                 <div class="des">
                     <span>adidas</span>
@@ -110,7 +93,7 @@
                     <h4>$78</h4>
                     <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                 </div>
-            </div>
+            </div> -->
         </div>
     </section>
 

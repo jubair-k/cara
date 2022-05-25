@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded',function(){
     function loadProduct(){
         document.getElementById('imgContainer').innerHTML=`<div class="spinner"></div>`;
         document.getElementById('productDetails').innerHTML=`<div class="spinner"></div>`;
+        document.getElementById('sproductContainer').innerHTML=`<div class="spinner"></div>`;
         var formData=new FormData();
         formData.append('pages','sproduct');
         formData.append('product',product);
@@ -21,7 +22,7 @@ document.addEventListener('DOMContentLoaded',function(){
         })
         .then( res => res.json())
         .then( data => {
-            console.log(data);
+            //console.log(data);
             productDetail="";
             if(data.prdct){
                 productDetail=`<h4>${data.prdct.product_name}</h4>
@@ -38,7 +39,32 @@ document.addEventListener('DOMContentLoaded',function(){
                 document.getElementById('productDetails').innerHTML=productDetail;
                 document.getElementById('imgContainer').innerHTML=`<img src="media/products/${data.prdct.image}" width="100%" id="mainImg" alt="">`;
                 document.getElementById('productSubCateg').textContent=data.prdct.sub_categories;
-                
+            }
+
+            if(data.featured){
+                products="";
+                for (const row of data.featured) {
+                    products+=`<div class="pro" data-id="${row.id}">
+                                    <img src="media/products/${row.image}" alt="">
+                                    <div class="des">
+                                    <h5 class="pr_name">${row.product_name}</h5>
+                                        <div class="star">
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                            <i class="fas fa-star"></i>
+                                        </div>
+                                        <h4><strike>$${row.mrp}</strike> &nbsp; ${row.price}</h4>
+                                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    </div>
+                                </div>`
+                }
+                document.getElementById('sproductContainer').innerHTML=products;
+                prnames=document.querySelectorAll('.pr_name');
+                Array.from(prnames).forEach( ele => {
+                    if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
+                })            
             }
 
             const container = document.getElementById("imgContainer");
@@ -60,6 +86,16 @@ document.addEventListener('DOMContentLoaded',function(){
     }
 
     loadProduct();
+
+    $('#sproductContainer').on('click','.pro',function(){
+        if(localStorage.getItem("cara")){
+            localObj=JSON.parse(localStorage.getItem("cara"));
+            localObj.product=this.dataset.id;
+            localStorage.setItem("cara",JSON.stringify(localObj));
+            window.location="sproduct.php";
+        }
+    })
+
 
 
 
