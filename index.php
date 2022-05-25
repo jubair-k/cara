@@ -77,7 +77,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <h4><strike><?php echo "$".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
+                                    <h4><strike><?php echo "₹".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
                                     <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>
@@ -118,7 +118,7 @@
                                         <i class="fas fa-star"></i>
                                         <i class="fas fa-star"></i>
                                     </div>
-                                    <h4><strike><?php echo "$".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
+                                    <h4><strike><?php echo "₹".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
                                     <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>

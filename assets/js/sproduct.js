@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                             <i class="fas fa-star"></i>
                                             <i class="fas fa-star"></i>
                                         </div>
-                                        <h4><strike>$${row.mrp}</strike> &nbsp; ${row.price}</h4>
+                                        <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
                                         <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                     </div>
                                 </div>`
