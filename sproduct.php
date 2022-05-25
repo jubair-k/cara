@@ -7,21 +7,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sproduct.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" />
     <title>Cara</title>
 </head>
 
-<body>
+<body id="page2">
     <?php include "header.php"; ?>
+    <div class="breadcrumb section-p1">
+        <a href="index.php">Home</a> / <a href="shop.php">Shop</a> / <span id="productSubCateg"></span>
+    </div>
 
     <section id="prodetails" class="section-p1">
         <div class="single-pro-image" id="imgContainer">
-            <img src="media/products/f1.jpg" width="100%" id="mainImg" alt="">
+            <!-- <img src="media/products/f1.jpg" width="100%" id="mainImg" alt=""> -->
         </div>
 
-        <div class="single-pro-details">
-            <h6>Home / T-Shirt</h6>
-            <h4>Men's Fashion T Shirt</h4>
+        <div class="single-pro-details" id="productDetails">
+            <!-- <h4>Men's Fashion T Shirt</h4>
             <h2>$139.00</h2>
             <select>
                 <option>Select Size</option>
@@ -36,7 +39,7 @@
             <span>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Voluptate harum dolorem molestias vero nihil
                 officia nobis aliquam nulla facilis quo illum in dolor minima tenetur voluptatum debitis, incidunt
                 dignissimos? Beatae suscipit quo autem qui. Veritatis maxime officia ipsum assumenda blanditiis aut
-                corrupti optio impedit illo beatae ad?</span>
+                corrupti optio impedit illo beatae ad?</span> -->
         </div>
     </section>
 
@@ -124,7 +127,7 @@
 
     <?php include "footer.php"; ?>
 
-    <script src="assets/js/script.js"></script>
+    <!-- <script src="assets/js/script.js"></script> -->
     <script src="assets/js/sproduct.js"></script>
 </body>
 

@@ -1,0 +1,16 @@
+.breadcrumb a,.breadcrumb span{
+    font-weight: 700;
+    font-size: 13px;
+}
+.breadcrumb a{
+    color: rgb(23, 69, 196);
+}
+.breadcrumb span{
+    color: #6e6e6e;
+}
+
+#prodetails #productDetails span{
+    display: block;
+    line-height: 25px;
+    text-align: justify;
+}

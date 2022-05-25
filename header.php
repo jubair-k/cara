@@ -22,11 +22,8 @@
 </section>
 
 <script>
-    //document.addEventListener('DOMContentLoaded',function(){
-        page=document.body.getAttribute('id');
-        currentActive=document.querySelector("#navbar li .active");
-        currentActive.classList.remove('active');
-        document.querySelector("."+page).classList.add('active');
-
-    //})
+    page=document.body.getAttribute('id');
+    currentActive=document.querySelector("#navbar li .active");
+    currentActive.classList.remove('active');
+    document.querySelector("."+page).classList.add('active');
 </script>

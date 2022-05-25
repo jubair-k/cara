@@ -507,12 +507,13 @@ footer .copyright{
 /* single product section */
 #prodetails{
     display: flex;
-    margin-top: 20px;
+    padding-top: 0px;
 }
 #prodetails .single-pro-image{
     width: 40%;
     margin-right: 50px;
     overflow: hidden;
+    cursor: zoom-in;
 }
 .small-img-group{
     display: flex;
@@ -524,29 +525,45 @@ footer .copyright{
 }
 #prodetails .single-pro-details{
     width: 50%;
-    padding-top: 30px;
 }
 #prodetails .single-pro-details h4{
-    padding: 40px 0 20px 0;
+    padding: 30px 0 20px 0;
+    text-transform: capitalize;
 }
 #prodetails .single-pro-details h2{
     font-size: 26px;
 }
+#prodetails .single-pro-details h2 strike{
+    font-size: 17px;
+    color: #ec544e;
+    font-weight: 400;
+}
 #prodetails .single-pro-details select{
     display: block;
-    padding: 5px 10px;
+    padding: 10px 15px;
     margin-bottom: 10px;
+    outline: none;
+    border: 1px solid rgba(82, 82, 82, 0.856);
+    border-radius: 5px;
+    cursor: pointer;
 }
 #prodetails .single-pro-details input{
-    width: 50px;
+    display: block;
+    width: auto;
     height: 47px;
-    padding-left: 10px;
+    padding: 5px 15px;
     font-size: 16px;
-    margin-right: 10px;
+    margin-bottom: 10px;
+    outline: none;
+    border: 1px solid rgba(82, 82, 82, 0.856);
+    border-radius: 5px;
+
 }
 #prodetails .single-pro-details input:focus{outline: none;}
 #prodetails .single-pro-details button{
     background-color: #088178;
+    color: #fff;
+    border-radius: 5px;
 }
 #prodetails .single-pro-details span{
     display: block;
