@@ -7,7 +7,7 @@
             <li><a class="page2" href="shop.php">Shop</a></li>
             <li><a href="blog.html">Blog</a></li>
             <li><a class="page3" href="about.html">About</a></li>
-            <li><a class="page4" href="contact.html">Contact</a></li>
+            <li><a class="page4" href="contact.php">Contact</a></li>
             <li id="lg-bag"><a href="cart.html"><i class="fal fa-shopping-bag"></i></a></li>
             <a href="#" id="close"><i class="far fa-times"></i></a>
         </ul>
