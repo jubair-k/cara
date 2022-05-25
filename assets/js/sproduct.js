@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded',function(){
         localObj=JSON.parse(localStorage.getItem('cara'));
         if(localObj.product){
             product=localObj.product
-            console.log(product);
         }
     } else {
         window.location="shop.php";
