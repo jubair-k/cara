@@ -370,10 +370,19 @@ document.addEventListener('DOMContentLoaded',function(){
     })
 
     // click the single product
-    $('#proContainer').on('click','.pro',function(){
+    $('#proContainer').on('click','.pro img',function(){
         if(localStorage.getItem("cara")){
             localObj=JSON.parse(localStorage.getItem("cara"));
-            localObj.product=this.dataset.id;
+            localObj.product=this.parentElement.dataset.id;
+            localStorage.setItem("cara",JSON.stringify(localObj));
+            window.location="sproduct.php";
+        }
+    })
+
+    $('#proContainer').on('click','.pr_name',function(){
+        if(localStorage.getItem("cara")){
+            localObj=JSON.parse(localStorage.getItem("cara"));
+            localObj.product=this.parentElement.parentElement.dataset.id;
             localStorage.setItem("cara",JSON.stringify(localObj));
             window.location="sproduct.php";
         }

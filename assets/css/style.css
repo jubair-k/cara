@@ -196,7 +196,6 @@ body{
     background-color: #fff2e5;
 }
 
-
 #product1{
     text-align: center;
 }
@@ -212,7 +211,6 @@ body{
     padding: 10px 12px;
     border: 1px solid #cce7db;
     border-radius: 25px;
-    cursor: pointer;
     box-shadow: 20px 20px 30px rgba(0, 0, 0, 0.02);
     margin: 15px 0px;
     transition: 0.2s ease;
@@ -222,6 +220,7 @@ body{
 #product1 .pro img{
     width: 100%;
     border-radius: 20px;
+    cursor: pointer;
 }
 #product1 .pro .des{
     text-align: start;
@@ -236,6 +235,7 @@ body{
     color: #1a1a1a;
     font-size: 14px;
     text-transform: capitalize;
+    cursor: pointer;
 }
 #product1 .pro .des i{
     font-size: 12px;

@@ -8,14 +8,25 @@ document.addEventListener('DOMContentLoaded',function(){
     localStorage.setItem("cara",JSON.stringify(localObj));  
 
 
-    $('.pro').on('click',function(){
+    $('.pro img').on('click',function(){
         if(localStorage.getItem("cara")){
             localObj=JSON.parse(localStorage.getItem("cara"));
-            localObj.product=this.dataset.id;
+            localObj.product=this.parentElement.dataset.id;
             localStorage.setItem("cara",JSON.stringify(localObj));
             window.location="sproduct.php";
         }
     })
+
+    $('.pro .pr_name').on('click',function(){
+        if(localStorage.getItem("cara")){
+            localObj=JSON.parse(localStorage.getItem("cara"));
+            localObj.product=this.parentElement.parentElement.dataset.id;
+            localStorage.setItem("cara",JSON.stringify(localObj));
+            window.location="sproduct.php";
+        }
+    })
+
+
 
 
 })
