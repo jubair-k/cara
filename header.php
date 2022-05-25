@@ -8,13 +8,13 @@
             <li><a href="blog.html">Blog</a></li>
             <li><a class="page3" href="about.html">About</a></li>
             <li><a class="page4" href="contact.php">Contact</a></li>
-            <li id="lg-bag"><a href="cart.html"><i class="fal fa-shopping-bag"></i></a></li>
+            <li id="lg-bag"><a class="page5"  href="cart.php"><i class="fal fa-shopping-bag"></i></a></li>
             <a href="#" id="close"><i class="far fa-times"></i></a>
         </ul>
     </div>
     
     <div id="mobile">
-        <a href="cart.html"><i class="fal fa-shopping-bag"></i></a>
+        <a class="page5" href="cart.php"><i class="fal fa-shopping-bag"></i></a>
         <i id="bar" class="fas fa-outdent"></i>
 
     </div>

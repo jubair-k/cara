@@ -1,8 +1,5 @@
 <?php
     require "functions.php";
-    // echo "<pre>";
-    // print_r($newArr);
-
 ?>
 
 <!DOCTYPE html>
