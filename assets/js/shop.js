@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
