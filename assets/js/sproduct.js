@@ -55,7 +55,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                             <i class="fas fa-star"></i>
                                         </div>
                                         <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                        <a href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                        <a data-mx="${row.qty}" class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                     </div>
                                 </div>`
                 }
@@ -86,10 +86,21 @@ document.addEventListener('DOMContentLoaded',function(){
 
     loadProduct();
 
-    $('#sproductContainer').on('click','.pro',function(){
+    // click the single product image
+    $('#sproductContainer').on('click','.pro img',function(){
         if(localStorage.getItem("cara")){
             localObj=JSON.parse(localStorage.getItem("cara"));
-            localObj.product=this.dataset.id;
+            localObj.product=this.parentElement.dataset.id;
+            localStorage.setItem("cara",JSON.stringify(localObj));
+            window.location="sproduct.php";
+        }
+    })
+
+    // click the single product name
+    $('#sproductContainer').on('click','.pr_name',function(){
+        if(localStorage.getItem("cara")){
+            localObj=JSON.parse(localStorage.getItem("cara"));
+            localObj.product=this.parentElement.parentElement.dataset.id;
             localStorage.setItem("cara",JSON.stringify(localObj));
             window.location="sproduct.php";
         }

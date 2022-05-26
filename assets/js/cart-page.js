@@ -89,4 +89,25 @@ document.addEventListener('DOMContentLoaded',function(){
         $('.subtotal').text("₹ "+subTotal)
     })
 
+    $('body').on('click','.remove_art',function(e){
+        e.preventDefault();
+        this.parentElement.parentElement.remove();
+        let cartArr=[];
+        parentbody=document.querySelector('#cart table tbody');
+        subTotal=0;
+        Array.from(parentbody.children).map( (ele,ind) => {
+            subTotal+=Number(ele.children[5].textContent.slice(2,));
+            prdctid=ele.dataset.id;
+            ele.children[4].children[0].value=="OUT OF STOCK" ? prdctqty=0 : prdctqty=ele.children[4].children[0].value
+            obj={
+                id:prdctid,
+                quanity:prdctqty
+            }
+            cartArr.push(obj);
+        })
+        localStorage.setItem('caraCart',JSON.stringify(cartArr));
+        $('.subtotal').text("₹ "+subTotal)
+        cartArr.length>0 ? $('.cartcount').text(cartArr.length) : $('.cartcount').text(""); 
+    })
+
 })
