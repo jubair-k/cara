@@ -24,7 +24,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
 
         if(index===cartArr.length){
-            quntity=1;
+            maxquantity>0 ? quntity=1 : quntity=0;
             cartobj={
                 id:product,
                 quanity:quntity
