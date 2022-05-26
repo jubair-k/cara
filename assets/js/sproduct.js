@@ -27,11 +27,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 productDetail=`<h4>${data.prdct.product_name}</h4>
                                 <h2>₹${data.prdct.price} <strike>₹${data.prdct.mrp}</strike></h2>`
                                 if(Number(data.prdct.qty)>0){
-                                    productDetail+=`<input type="number" id="quantity" value="1" name="quantity" min="1" max="${Number(data.prdct.qty)}"></input>`
+                                    productDetail+=`<input type="number" class="quantityinpt" value="1" name="quantity" min="1" max="${Number(data.prdct.qty)}"></input>`
                                 } else {
-                                    productDetail+=`<input type="text" id="quantity" name="quantity" style="color: #ec544e;" value="OUT OF STOCK" readonly></input>`
+                                    productDetail+=`<input type="text" class="quantityinpt" name="quantity" style="color: #ec544e;" value="OUT OF STOCK" readonly></input>`
                                 }
-                productDetail+=`<button class="normal" data-id="${data.prdct.id}">Add To Cart</button>
+                productDetail+=`<button class="normal addtocart_single" data-id="${data.prdct.id}">Add To Cart</button>
                                 <h4>Product Details</h4>
                                 <span>${data.prdct.description}</span>`
 
@@ -95,6 +95,12 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     })
 
+    $('#productDetails').on('change','.quantityinpt',function(){
+        val=this.value;
+        maxval=Number($(this).attr('max'));
+        if(val<=0) this.value=1;
+        if(val>maxval) this.value=maxval;
+    })
 
 
 

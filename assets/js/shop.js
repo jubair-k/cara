@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a data-mx="${row.qty}" class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -191,7 +191,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a data-mx="${row.qty}" class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -283,7 +283,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a data-mx="${row.qty}" class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -350,7 +350,7 @@ document.addEventListener('DOMContentLoaded',function(){
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike>₹${row.mrp}</strike> &nbsp; ${row.price}</h4>
-                                    <a class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a data-mx="${row.qty}" class="addcart" href="#"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>`
             }
@@ -369,7 +369,7 @@ document.addEventListener('DOMContentLoaded',function(){
         })
     })
 
-    // click the single product
+    // click the single product image
     $('#proContainer').on('click','.pro img',function(){
         if(localStorage.getItem("cara")){
             localObj=JSON.parse(localStorage.getItem("cara"));
@@ -379,6 +379,7 @@ document.addEventListener('DOMContentLoaded',function(){
         }
     })
 
+    // click the single product name
     $('#proContainer').on('click','.pr_name',function(){
         if(localStorage.getItem("cara")){
             localObj=JSON.parse(localStorage.getItem("cara"));

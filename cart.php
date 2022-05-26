@@ -93,6 +93,7 @@
     <?php include "footer.php"; ?>
 
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/cart.js"></script>
 </body>
 
 </html>

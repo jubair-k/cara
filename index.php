@@ -75,7 +75,7 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike><?php echo "₹".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
-                                    <a href="#" class="addcart"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a href="#" data-mx="<?php echo $value->qty; ?>" class="addcart"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>
                             <?php
@@ -116,7 +116,7 @@
                                         <i class="fas fa-star"></i>
                                     </div>
                                     <h4><strike><?php echo "₹".$value->mrp; ?></strike> &nbsp; <?php echo $value->price; ?></h4>
-                                    <a href="#" class="addcart"><i class="fal fa-shopping-cart cart"></i></a>
+                                    <a href="#" data-mx="<?php echo $value->qty; ?>" class="addcart"><i class="fal fa-shopping-cart cart"></i></a>
                                 </div>
                             </div>
                             <?php
