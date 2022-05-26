@@ -21,7 +21,7 @@
     </section>
 
     <section id="cart" class="section-p1">
-        <table width="100%">
+        <!-- <table width="100%">
             <thead>
                 <tr>
                     <td>Remove</td>
@@ -58,7 +58,7 @@
                     <td>$118.19</td>
                 </tr>
             </tbody>
-        </table>
+        </table> -->
     </section>
 
     <section id="cart-add" class="section-p1">
@@ -75,7 +75,7 @@
             <table>
                 <tr>
                     <td>Cart Subtotal</td>
-                    <td>$ 335</td>
+                    <td class="subtotal">₹ 0</td>
                 </tr>
                 <tr>
                     <td>Shipping</td>
@@ -83,7 +83,7 @@
                 </tr>
                 <tr>
                     <td><strong>Total</strong></td>
-                    <td><strong>$ 335</strong></td>
+                    <td><strong class="subtotal">₹ 0</strong></td>
                 </tr>
             </table>
             <button class="normal">Proceed to checkout</button>
@@ -94,6 +94,7 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/cart-page.js"></script>
 </body>
 
 </html>
