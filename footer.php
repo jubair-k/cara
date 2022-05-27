@@ -18,19 +18,19 @@
     </div>
     <div class="col">
         <h4>About</h4>
-        <a href="#">About us</a>
-        <a href="#">Delivery Information</a>
-        <a href="#">Privacy Policy</a>
-        <a href="#">Terms & Conditions</a>
-        <a href="#">Contact Us</a>
+        <a href="about.php">About us</a>
+        <a href="coming-soon.php">Delivery Information</a>
+        <a href="coming-soon.php">Privacy Policy</a>
+        <a href="coming-soon.php">Terms & Conditions</a>
+        <a href="contact.php">Contact Us</a>
     </div>
     <div class="col">
         <h4>My Account</h4>
-        <a href="#">Sign In</a>
-        <a href="#">View Cart</a>
-        <a href="#">My Wishlist</a>
-        <a href="#">Track My Order</a>
-        <a href="#">Help</a>
+        <a href="coming-soon.php">Sign In</a>
+        <a href="cart.php">View Cart</a>
+        <a href="cart.php">My Wishlist</a>
+        <a href="coming-soon.php">Track My Order</a>
+        <a href="coming-soon.php">Help</a>
     </div>
     <div class="col install">
         <h4>Install App</h4>

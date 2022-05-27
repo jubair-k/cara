@@ -24,21 +24,22 @@
         <img src="assets/images/about/a6.jpg" alt="">
         <div>
             <h2>Who We Are?</h2>
-            <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Eum dignissimos similique ipsum sed debitis
-                provident voluptate dolore ipsam magni nisi numquam repellendus fuga beatae molestias reprehenderit
-                laudantium illo sunt laboriosam consectetur magnam, dolorum voluptatem tempora aliquid? Ratione sunt,
-                sapiente ab molestias necessitatibus debitis temporibus nisi doloremque esse.</p>
-            <abbr title="">Create stunning images with as much or as littile control as you like thanks to a choise of
-                Basic and Creative modes</abbr>
+            <p>Founded in August 2008 and bassed in San Francisco, California, Cara is a trusted community marketplace 
+                for people to list, discover, and book fashion products. WE build new products based on our customer's
+                feedback. Whilst our packs are criticaly acclimed we know that thsre is always room for improvment. Having
+                conversations with people  who use our products is the core of our business. We realy hope you will help us on
+                our mission.
+            </p>
+            <abbr title="">Purchase stunning products with good quality or as littile control as you like thanks to a choise of
+                Basic and Good products</abbr>
             <br><br>
-            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="" 100%>Create stunning images with as much or as
-                littile control as you like
-                thanks to a choise of Basic and Creative modes</marquee>
+            <marquee bgcolor="#ccc" loop="-1" scrollamount="5" width="" 100%>Purchase stunning products with good quality or as 
+                littile control as you like thanks to a choise of Basic and Good products</marquee>
         </div>
     </section>
 
     <section id="about-app" class="section-p1">
-        <h1>Download Our <a href="#">App</a></h1>
+        <h1>Download Our <a href="coming-soon.php">App</a></h1>
         <div class="video">
             <video autoplay muted loop src="assets/images/about/1.mp4"></video>
         </div>
