@@ -19,4 +19,11 @@ document.addEventListener('DOMContentLoaded',function(){
     Array.from(prnames).forEach( ele => {
         if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
     })
+
+    $('#subscriptionModal').on('click',function(){
+        this.style.display="none";
+    })
+    $('#close_modal').on('click',function(){
+        document.getElementById('subscriptionModal').style.display="none";
+    })
 })
