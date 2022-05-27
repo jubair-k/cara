@@ -39,7 +39,8 @@ p{
 .section-m1{
     margin: 40px 0px;
 }
-button.normal{
+button.normal,
+a.normal{
     font-size: 14px;
     font-weight: 600;
     padding: 15px 30px;
@@ -51,7 +52,8 @@ button.normal{
     outline: none;
     transition: 0.2s;
 }
-button.white{
+button.white,
+a.white{
     font-size: 13px;
     font-weight: 600;
     padding: 11px 18px;
@@ -137,7 +139,7 @@ body{
 #hero h1{
     color: #088178;
 }
-#hero button{
+#hero a{
     background-image: url("../images/button.png");
     background-color: transparent;
     color: #088178;
@@ -289,7 +291,8 @@ body{
 #banner h2 span{
     color: #ef3636;
 }
-#banner button:hover{
+#banner button:hover,
+#banner a:hover{
     background: #088178;
     color: #fff;
 }

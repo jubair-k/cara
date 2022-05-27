@@ -5,8 +5,7 @@
         <ul id="navbar">
             <li><a class="page1 active" href="index.php">Home</a></li>
             <li><a class="page2" href="shop.php">Shop</a></li>
-            <li><a href="blog.html">Blog</a></li>
-            <li><a class="page3" href="about.html">About</a></li>
+            <li><a class="page3" href="about.php">About</a></li>
             <li><a class="page4" href="contact.php">Contact</a></li>
             <li id="lg-bag"><a class="page5"  href="cart.php"><i class="fal fa-shopping-bag"></i><span class="cartcount"></span></a></li>
             <a href="#" id="close"><i class="far fa-times"></i></a>

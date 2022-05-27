@@ -22,7 +22,7 @@
         <h2>super value deals</h2>
         <h1>On all products</h1>
         <p>save more with coupons 7 up to 70% off!</p>
-        <button>Shop Now</button>
+        <a href="shop.php">Shop Now</a>
     </section>
 
     <section id="feature" class="section-p1">
@@ -90,7 +90,7 @@
     <section id="banner" class="section-m1">
         <h4>Repair Services</h4>
         <h2>Up to <span>70% off</span> All t-Shirts & Accessories</h2>
-        <button class="normal">Explore More</button>
+        <a href="shop.php" class="normal">Explore More</a>
     </section>
 
     <?php
