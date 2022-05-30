@@ -36,6 +36,7 @@
     margin-bottom: 30px;
 }
 #addsub_ctegories_form .submit{
+    display: block;
     padding: 10px 20px;
     outline: none;
     border: none;
@@ -44,9 +45,9 @@
     color: #fff;
     border-radius: 4px;
     cursor: pointer;
-    margin-top: 25px;
-    display: block;
+    margin-top: 35px;
     width: 100%;
+    z-index: 500;
 }
 
 .exist_alert{

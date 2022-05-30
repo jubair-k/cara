@@ -2,7 +2,7 @@
     session_start();
 
     if(!isset($_SESSION['cara_admin']) && empty($_SESSION['cara_admin'])){
-        header("location:login.html");
+        header("location:index.html");
     }
 ?>
 
