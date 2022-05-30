@@ -8,6 +8,7 @@
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="assets/css/shop.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Cara</title>
 </head>
 <body id="page2">
