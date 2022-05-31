@@ -20,7 +20,30 @@ document.addEventListener('DOMContentLoaded',function(){
         if(ele.textContent.length>20) ele.textContent=ele.textContent.slice(0,20)+" ...";
     })
 
-    $('#subscriptionModal').on('click',function(){
+    $('#subscribe').on('click',function(){
+        if($('#email').val()!="" && $('#email').val()!=null){
+            document.getElementById('modalTitle').innerHTML=`<p>Please wait, It will take a few minutes.</p><div class="spinner"></div>`;
+            document.getElementById('close_modal').style.visibility="hidden";
+            document.getElementById('subscriptionModal').style.display="flex";
+            let formData=new FormData();
+            formData.append('pages','suscribe');
+            formData.append('mail',$('#email').val());
+            fetch('assets/process/subscribe-process.php',{
+                method:"POST",
+                body:formData
+            })
+            .then( res => res.json() )
+            .then( data => {
+                //console.log(data);
+                document.getElementById('subscriptionModal').classList.add('close_modal_active');
+                document.getElementById('close_modal').style.visibility="visible";
+                document.getElementById('modalTitle').innerHTML=data;
+                $('#email').val('')
+            })
+        }
+    })
+
+    $('body').on('click','.close_modal_active',function(){
         this.style.display="none";
     })
     $('#close_modal').on('click',function(){
