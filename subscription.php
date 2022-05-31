@@ -11,7 +11,7 @@
 
 <section id="subscriptionModal">
     <div class="modal_content">
-        <h4>Thanks for subscribing Us</h4>
+        <h4 id="modalTitle">Thanks for subscribing Us</h4>
         <button id="close_modal">OK</button>
     </div>
 </section>

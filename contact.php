@@ -52,14 +52,14 @@
     </section>
 
     <section id="form-details">
-        <form action="">
+        <form id="messageForm">
             <span>LEAVE A MESSAGE</span>
             <h2>We love to hear from you</h2>
-            <input type="text" placeholder="Your Name">
-            <input type="text" placeholder="E-mail">
-            <input type="text" placeholder="Subject">
-            <textarea name="" id="" cols="30" rows="10" placeholder="Your message"></textarea>
-            <button class="normal">Submit</button>
+            <input type="text" name="name" placeholder="Your Name" required>
+            <input type="email" name="mail" placeholder="E-mail" required>
+            <input type="text" name="subject" placeholder="Subject">
+            <textarea name="message" id="" cols="30" rows="10" placeholder="Your message" required></textarea>
+            <button type="submit" class="normal">Submit</button>
         </form>
 
         <div class="people">
@@ -98,6 +98,7 @@
 
     <script src="assets/js/script.js"></script>
     <script src="assets/js/cart.js"></script>
+    <script src="assets/js/contact.js"></script>
 </body>
 
 </html>
