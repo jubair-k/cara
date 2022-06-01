@@ -1,4 +1,5 @@
 <?php
+    session_start();
     require "connect.php";
 
     use PHPMailer\PHPMailer\PHPMailer;
@@ -65,6 +66,7 @@
                         $inst_mail="INSERT INTO subscribers(mail,status) VALUES(:mil,:st)";
                         $stmt=$pdo->prepare($inst_mail);
                         $stmt->execute(array('mil'=>$reciver,'st'=>1));
+                        $_SESSION['cara_signup']="done";
                         $result['done']=$res;
                     } else{
                         $result['wrong']=$res;

@@ -72,4 +72,8 @@ document.addEventListener('DOMContentLoaded',function(){
         localStorage.setItem('caraCart',JSON.stringify(cartArr));
         if(cartArr.length>0) $('.cartcount').text(cartArr.length);
     })
+
+    $('.gotosoon').on('click',function(){
+        window.location="coming-soon.php";
+    })
 })

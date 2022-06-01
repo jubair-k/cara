@@ -1,3 +1,4 @@
+<?php session_start(); ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -66,7 +67,7 @@
             <h3>Apply Coupon</h3>
             <div>
                 <input type="text" placeholder="Enter Your Coupon">
-                <button class="normal">Apply</button>
+                <button class="normal gotosoon">Apply</button>
             </div>
         </div>
 
@@ -86,7 +87,7 @@
                     <td><strong class="subtotal">₹ 0</strong></td>
                 </tr>
             </table>
-            <button class="normal">Proceed to checkout</button>
+            <button class="normal gotosoon">Proceed to checkout</button>
         </div>
     </section>
 

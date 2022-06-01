@@ -68,7 +68,8 @@ document.addEventListener('DOMContentLoaded',function(){
                         icon: "success",
                         title:data.done,
                         timer:6000
-                    })    
+                    });    
+                    document.getElementById('newsletter').style.display="none";
                 }
                 $('#email').val('')
             })
