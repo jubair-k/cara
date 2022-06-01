@@ -1,5 +1,14 @@
 document.addEventListener('DOMContentLoaded',function(){
     $('#messageForm').on('submit',function(e){
+        Swal.fire({
+            title:'Sending ...',
+            text:'Please Wait !',
+            showConfirmButton:false,
+            allowOutsideClick:false,
+            willOpen: ()=> {
+              Swal.showLoading()
+            }
+        })
         form=document.getElementById('messageForm')
         e.preventDefault();
         let formData=new FormData(form);
@@ -14,11 +23,12 @@ document.addEventListener('DOMContentLoaded',function(){
             if(data=="done"){
                 $('#messageForm input').val('');
                 $('#messageForm textarea').val('');
-                document.getElementById('modalTitle').textContent="Thanks for your valuble Message.";
-                document.getElementById('subscriptionModal').style.display="flex";
-                setTimeout(() => {
-                    document.getElementById('subscriptionModal').style.display="none";
-                }, 8000);
+                Swal.fire({
+                    icon: "success",
+                    text:'YOUR MESSAGE WAS SENT SUCCESSFULLY. THANKS',
+                    timer:6000
+                })    
+
             }
         })
     })
