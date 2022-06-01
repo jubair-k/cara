@@ -47,7 +47,7 @@
         if ($mail->send()) {
             return "Thanks for Subscribing!";
         } else {
-            return "Something is wrong <br><br>";
+            return "Something is wrong.";
         }
     }
 
@@ -65,13 +65,15 @@
                         $inst_mail="INSERT INTO subscribers(mail,status) VALUES(:mil,:st)";
                         $stmt=$pdo->prepare($inst_mail);
                         $stmt->execute(array('mil'=>$reciver,'st'=>1));
+                        $result['done']=$res;
+                    } else{
+                        $result['wrong']=$res;
                     }
-                    $result=$res;
                 } else{
-                    $result="You Are Already Subscribed";
+                    $result['exist']="You Are Already Subscribed";
                 }
             }else{
-                $result="Please enter a valid email.";
+                $result['check']="Please enter a valid email.";
             }
         }
 

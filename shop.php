@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
     <link rel="stylesheet" href="assets/css/shop.css">
     <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Cara</title>
@@ -68,6 +69,7 @@
     <?php include "subscription.php"; ?>
     <?php include "footer.php"; ?>
 
+    <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/shop.js"></script>
     <script src="assets/js/cart.js"></script>

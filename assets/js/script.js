@@ -22,9 +22,16 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('#subscribe').on('click',function(){
         if($('#email').val()!="" && $('#email').val()!=null){
-            document.getElementById('modalTitle').innerHTML=`<p>Please wait, It will take a few minutes.</p><div class="spinner"></div>`;
-            document.getElementById('close_modal').style.visibility="hidden";
-            document.getElementById('subscriptionModal').style.display="flex";
+            Swal.fire({
+                title:'Checking ...',
+                text:'Please Wait !',
+                showConfirmButton:false,
+                allowOutsideClick:false,
+                willOpen: ()=> {
+                  Swal.showLoading()
+                }
+              })
+          
             let formData=new FormData();
             formData.append('pages','suscribe');
             formData.append('mail',$('#email').val());
@@ -35,9 +42,34 @@ document.addEventListener('DOMContentLoaded',function(){
             .then( res => res.json() )
             .then( data => {
                 //console.log(data);
-                document.getElementById('subscriptionModal').classList.add('close_modal_active');
-                document.getElementById('close_modal').style.visibility="visible";
-                document.getElementById('modalTitle').innerHTML=data;
+                if(data.check){
+                    Swal.fire({
+                        icon: "warning",
+                        title:data.check,
+                        timer:6000
+                    })    
+                }
+                else if(data.exist){
+                    Swal.fire({
+                        icon: "info",
+                        title:data.exist,
+                        timer:6000
+                    })    
+                }
+                else if(data.wrong){
+                    Swal.fire({
+                        icon: "error",
+                        title:data.wrong,
+                        timer:6000
+                    })    
+                }
+                else if(data.done){
+                    Swal.fire({
+                        icon: "success",
+                        title:data.done,
+                        timer:6000
+                    })    
+                }
                 $('#email').val('')
             })
         }
