@@ -16,6 +16,7 @@
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/product.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <title>Product</title>
 </head>
 <body>
@@ -142,7 +143,7 @@
         </form>
 
         <div class="board">
-            <table width="100%">
+            <table width="100%" id="productTable">
                 <thead>
                     <tr>
                         <td>Categories</td>
@@ -155,9 +156,9 @@
                         <td></td>
                     </tr>
                 </thead>
-                <tbody class="products_tbody">
+                <!-- <tbody class="products_tbody">
 
-                </tbody>
+                </tbody> -->
             </table>
         </div>
     </section>
@@ -210,7 +211,7 @@
 
                 })
             }
-            loadProducts()
+            //loadProducts()
 
             function loadCategoriesId(){
                 let formData = new FormData();
@@ -414,5 +415,10 @@
 
         })
     </script>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="assets/js/product.js"></script>
+
 </body>
 </html>

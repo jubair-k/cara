@@ -61,7 +61,7 @@
     flex-wrap: wrap;
     justify-content: flex-end;
 }
-.operate_td button{
+#productTable tbody tr td button{
     outline: none;
     border: none;
     padding: 8px 10px;
@@ -83,6 +83,12 @@
     background-color: #7B74EC;
 }
 .operate_td button:nth-child(3){
+    background-color: #FF0000;
+}
+.edite_prdct{
+    background-color: #7B74EC;
+}
+.delete_prdct{
     background-color: #FF0000;
 }
 
