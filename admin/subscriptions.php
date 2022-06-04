@@ -15,7 +15,8 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
-    <title>Dashboard</title>
+    <link rel="stylesheet" href="assets/css/subscriptions.css">
+    <title>Subscriptions</title>
 </head>
 <body>
     <section id="menu">
@@ -24,12 +25,12 @@
         </div>
 
         <div class="items">
-            <a href="dashboard.php" class="li-active"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
-            <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
+            <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
+            <a href="categories.php" ><i class="fab fa-uikit"></i><span>Categories Master</span></a>
             <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
             <a href="seasons.php"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
             <a href="product.php"><i class="fas fa-edit"></i><span>Product Master</span></a>
-            <a href="subscriptions.php"><i class="fab fa-cc-visa"></i><span>Subscriptions</span></a>
+            <a href="subscriptions.php" class="li-active"><i class="fab fa-cc-visa"></i><span>Subscriptions</span></a>
             <a href="messages.php"><i class="fas fa-hamburger"></i><span>Messages</span></a>
             <a href=""><i class="fas fa-chart-line"></i><span>Contact Us</span></a>
         </div>
@@ -56,40 +57,30 @@
             </div>
         </div>
 
-        <h3 class="i-name">Dashboard</h3>
-
-        <div class="values">
-            <div class="val-box">
-                <i class="fas fa-users"></i>
-                <div>
-                    <h3>8,267</h3>
-                    <span>New Users</span>
-                </div>
-            </div>
-            <div class="val-box">
-                <i class="fas fa-shopping-cart"></i>
-                <div>
-                    <h3>200,512</h3>
-                    <span>Total Orders</span>
-                </div>
-            </div>
-            <div class="val-box">
-                <i class="fas fa-acorn"></i>
-                <div>
-                    <h3>215,542</h3>
-                    <span>Product Sell</span>
-                </div>
-            </div>
-            <div class="val-box">
-                <i class="fas fa-dollar-sign"></i>
-                <div>
-                    <h3>$677.89</h3>
-                    <span>This Month</span>
-                </div>
-            </div>
+        <div class="interface_header">
+            <h3 class="i-name">Categories</h3>
+            <button id="addcategoriesBtn">Add Categories</button>
         </div>
 
+        <form class="board" id="addctegories_form">
+            <label for="">Categories</label>
+            <input type="text" placeholder="Enter categories name" id="categoriesname" autocomplete="off" required>
+            <span class="exist_alert"></span>
+            <input type="submit" class="submit" value="Submit">
+        </form>
+
         <div class="board">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <td>Mails</td>
+                        <td></td>
+                    </tr>
+                </thead>
+                <tbody class="categories_tbody">
+
+                </tbody>
+            </table>
         </div>
     </section>
 
@@ -104,6 +95,10 @@
                 $('.logout_popup_wraper').toggleClass('logout_popup_active')
             })
 
+
+            $('#addcategoriesBtn').click(function(){
+                $('#addctegories_form').slideToggle('slow');
+            })
 
         })
     </script>
