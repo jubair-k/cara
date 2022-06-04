@@ -61,6 +61,12 @@
     flex-wrap: wrap;
     justify-content: flex-end;
 }
+.productTableboard{
+    padding: 15px;
+}
+.dataTables_wrapper .dataTables_length select {
+    margin-bottom: 10px;
+}
 #productTable tbody tr td button{
     outline: none;
     border: none;

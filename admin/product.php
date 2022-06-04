@@ -15,8 +15,9 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
+    <link rel="stylesheet" href="assets/datatable/jquery.dataTables.min.css">
+    <link rel="stylesheet" href="assets/datatable/responsive.dataTables.min.css">
     <link rel="stylesheet" href="assets/css/product.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.12.1/css/jquery.dataTables.min.css">
     <title>Product</title>
 </head>
 <body>
@@ -142,8 +143,8 @@
             <input type="submit" class="submit" value="Submit">
         </form>
 
-        <div class="board">
-            <table width="100%" id="productTable">
+        <div class="board productTableboard">
+            <table width="100%" id="productTable" class="stripe">
                 <thead>
                     <tr>
                         <td>Categories</td>
@@ -164,260 +165,9 @@
     </section>
 
 
-    <script>
-        $(document).ready(function(){
-            $('#menu-btn').click(function(){
-                $('#menu').toggleClass('active')
-            })
-
-            $('.logot_popup_btn').click(function(){
-                $('.logout_popup_wraper').toggleClass('logout_popup_active')
-            })
-
-            $('#addproductBtn').click(function(){
-                $('#addproduct_form').slideToggle('slow');
-            })
-
-            function loadProducts(){
-                let formData = new FormData();
-                formData.append('loadProducts','post');
-                fetch('assets/process/product-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    trs="";
-                    for (const row of data.prdct) {
-                        trs+=`<tr data-id=${row.id}>
-                                <td data-cat="${row.categories_id}">${row.categories}</td>
-                                <td data-subc="${row.sub_categories_id}">${row.sub_categories}</td>
-                                <td>${row.product_name}</td>
-                                <td><img src="../media/products/${row.image}"></td>
-                                <td>${row.mrp}</td>
-                                <td>${row.price}</td>
-                                <td>${row.qty}</td>`
-                        if(row.status=='1'){
-                            stbtn=`<button class="status_active stbtn">Active</button>`
-                        }else{
-                            stbtn=`<button class="status_deactive stbtn">Deactive</button>`
-                        }
-
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_prdct">Edit</button> <button class="delete_prdct">Delete</button></td>
-                            </tr>`
-                    }
-                    $('.products_tbody').html(trs);
-
-                })
-            }
-            //loadProducts()
-
-            function loadCategoriesId(){
-                let formData = new FormData();
-                formData.append('loadCategoriesId','post');
-                fetch('assets/process/product-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    opts=`<option value>Select Categories</option>`;
-                    for (const row of data.categs) {
-                        opts+=`<option value="${row.id}">${row.categories}</option>`;
-                    }
-                    $('#categoriesId').html(opts);
-
-                    sesnopts=`<option value>Select Season</option>`;
-                    for (const row of data.sesn) {
-                        sesnopts+=`<option value="${row.id}">${row.season}</option>`;
-                    }
-                    $('#seasonId').html(sesnopts);
-                })
-            }
-
-            loadCategoriesId()
-
-            $('#categoriesId').on('change',function(){
-                categselect=this.value;
-                let formData = new FormData();
-                formData.append('loadSubCategoriesId','post');
-                formData.append('categselect',categselect);
-                fetch('assets/process/product-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    opts=`<option value>Select Sub Categories</option>`;
-                    for (const row of data.subcategs) {
-                        opts+=`<option value="${row.id}">${row.sub_categories}</option>`;
-                    }
-                    $('#sub_categoriesId').html(opts);
-                })
-            })
-
-            $('#addproduct_form').on('submit',function(){
-                event.preventDefault();
-                if($('.submit').val()=="Submit"){
-                    if(document.getElementById('prdctimg').files.length!=0){
-                        let form=document.getElementById('addproduct_form');                
-                        let formData = new FormData(form)
-                        formData.append('addProducts','post');
-                        fetch('assets/process/product-process.php',{
-                            method: 'post',
-                            body: formData,
-                        })
-                        .then( res => res.json())
-                        .then( data => {
-                            //console.log(data);
-                            if(data.correct){
-                                loadProducts()
-                                $('.form_group input').val('');
-                                $('.form_group textarea').val('');
-                                $('.form_group select').val('');
-                                $('#image_alert').text('');
-                            }
-
-                            if(data.imgext){
-                                $('#image_alert').text(data.imgext);
-                            }
-
-                        })
-                    }
-                    else{
-                        $('#image_alert').text('Image required');
-                    }
-                }
-                if($('.submit').val()=="Save"){
-                    let form=document.getElementById('addproduct_form');                
-                    let formData = new FormData(form);
-                    formData.append('saveProducts','post');
-                    formData.append('prdctsave',prdctegedit_id);
-                    fetch('assets/process/product-process.php',{
-                        method: 'post',
-                        body: formData,
-                    })
-                    .then( res => res.json())
-                    .then( data => {
-                        //console.log(data);
-                        if(data.correct=="ok"){
-                            loadProducts()
-                            $('#addproduct_form').slideUp('fast');
-                            $('.submit').val('Submit')
-                            $('.form_group input').val('');
-                            $('.form_group textarea').val('');
-                            $('.form_group select').val('');
-                            $('#image_alert').text('');
-                        }
-
-                        if(data.imgext){
-                            $('#image_alert').text(data.imgext);
-                        }
-
-                    })
-                }
-            })
-
-            $('body').on('click','.stbtn',function(){
-                if(this.classList.contains('status_active')){
-                    prdct_id=this.parentElement.parentElement.dataset.id;
-                    let formData = new FormData();
-                    formData.append('deactiveprdct','post');
-                    formData.append('prdct',prdct_id)
-                    fetch('assets/process/product-process.php', {
-                        method: 'post',
-                        body: formData,
-                    })
-                    .then( res => res.json())
-                    .then( data => {
-                        //console.log(data);
-                        if(data=="success"){
-                            loadProducts()
-                        }
-                    })
-                }
-
-                if(this.classList.contains('status_deactive')){
-                    prdct_id=this.parentElement.parentElement.dataset.id;
-                    let formData = new FormData();
-                    formData.append('activeprdct','post');
-                    formData.append('prdct',prdct_id)
-                    fetch('assets/process/product-process.php', {
-                        method: 'post',
-                        body: formData,
-                    })
-                    .then( res => res.json())
-                    .then( data => {
-                        //console.log(data);
-                        if(data=="success"){
-                            loadProducts()
-                        }
-                    })
-                }
-            })
-
-            $('body').on('click','.delete_prdct',function(){
-                prdct_id=this.parentElement.parentElement.dataset.id;
-                let formData = new FormData();
-                formData.append('deleteprdct','post');
-                formData.append('prdct',prdct_id)
-                fetch('assets/process/product-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    if(data=="success"){
-                        loadProducts()
-                    }
-                })
-            })
-
-            $('body').on('click','.edite_prdct',function(){
-                prdctegedit_id=this.parentElement.parentElement.dataset.id
-                let formData = new FormData();
-                formData.append('prdeditgetdata','post');
-                formData.append('prdct',prdctegedit_id)
-                fetch('assets/process/product-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    $('#categoriesId').val(data.categories_id);
-                    $('#categoriesId').change();
-                    setTimeout(() => {
-                        $('#sub_categoriesId').val(data.sub_categories_id);
-                    }, 500);
-                    $('#seasonId').val(data.seasons_id);
-                    $('#prdctname').val(data.product_name);
-                    $('#best_seller').val(data.best_seller);
-                    $('#prdctmrp').val(data.mrp);
-                    $('#prdctprice').val(data.price);
-                    $('#prdctOffer').val(data.offer);
-                    $('#prdctofferdate').val(data.offer_expdate);
-                    $('#prdctqty').val(data.qty);
-                    $('#prdctdescription').val(data.description);
-                    $('#prdctmeta_title').val(data.meta_title);
-                    $('#addproduct_form').slideDown('fast');
-                    $('.submit').val('Save');
-                })
-            })
-
-
-
-
-
-        })
-    </script>
-
-    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
-    <script src="https://cdn.datatables.net/1.12.1/js/jquery.dataTables.min.js"></script>
+    <script src="assets/datatable/jquery-3.5.1.js"></script>
+    <script src="assets/datatable/jquery.dataTables.min.js"></script>
+    <script src="assets/datatable/dataTables.responsive.min.js"></script>
     <script src="assets/js/product.js"></script>
 
 </body>
