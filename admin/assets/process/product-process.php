@@ -65,7 +65,7 @@
         if(isset($_POST['loadProducts']) && !empty($_POST['loadProducts'])){
             $stmt=$pdo->query("SELECT categories.categories,sub_categories.sub_categories,product.product_name,product.mrp,product.price,product.qty,product.image,product.status,product.categories_id,product.sub_categories_id,product.id FROM product
             INNER JOIN categories ON categories.id=product.categories_id
-            INNER JOIN sub_categories ON sub_categories.id=product.sub_categories_id");
+            INNER JOIN sub_categories ON sub_categories.id=product.sub_categories_id ORDER BY id DESC");
             $array['prdct']=$stmt->fetchAll();
         }
 

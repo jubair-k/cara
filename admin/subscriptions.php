@@ -16,6 +16,7 @@
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/subscriptions.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
     <title>Subscriptions</title>
 </head>
 <body>
@@ -58,15 +59,16 @@
         </div>
 
         <div class="interface_header">
-            <h3 class="i-name">Categories</h3>
-            <button id="addcategoriesBtn">Add Categories</button>
+            <h3 class="i-name">Subscriptions</h3>
+            <button id="sendBulksBtn">Send Bulks</button>
         </div>
 
-        <form class="board" id="addctegories_form">
-            <label for="">Categories</label>
-            <input type="text" placeholder="Enter categories name" id="categoriesname" autocomplete="off" required>
-            <span class="exist_alert"></span>
-            <input type="submit" class="submit" value="Submit">
+        <form class="board" id="sendmail_form">
+            <label for="">Subject</label>
+            <input type="text" placeholder="" id="subject" autocomplete="off" required>
+            <label for="">Body</label>
+            <textarea name="mailody" id="mailody" cols="30" rows="10" autocomplete="off" required></textarea>
+            <input type="submit" class="submit" value="Send">
         </form>
 
         <div class="board">
@@ -77,30 +79,14 @@
                         <td></td>
                     </tr>
                 </thead>
-                <tbody class="categories_tbody">
+                <tbody class="mails_tbody" id="mail_tbody">
 
                 </tbody>
             </table>
         </div>
     </section>
-
-
-    <script>
-        $(document).ready(function(){
-            $('#menu-btn').click(function(){
-                $('#menu').toggleClass('active')
-            })
-
-            $('.logot_popup_btn').click(function(){
-                $('.logout_popup_wraper').toggleClass('logout_popup_active')
-            })
-
-
-            $('#addcategoriesBtn').click(function(){
-                $('#addctegories_form').slideToggle('slow');
-            })
-
-        })
-    </script>
+    
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/subscription.js"></script>
 </body>
 </html>
