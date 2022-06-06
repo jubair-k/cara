@@ -18,6 +18,8 @@
     <link rel="stylesheet" href="assets/datatable/jquery.dataTables.min.css">
     <link rel="stylesheet" href="assets/datatable/responsive.dataTables.min.css">
     <link rel="stylesheet" href="assets/css/product.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Product</title>
 </head>
 <body>
@@ -27,14 +29,13 @@
         </div>
 
         <div class="items">
-            <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
-            <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
+        <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
+            <a href="categories.php" ><i class="fab fa-uikit"></i><span>Categories Master</span></a>
             <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
-            <a href="seasons.php"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
-            <a href="product.php" class="li-active"><i class="fas fa-edit"></i><span>Product Master</span></a>
-            <a href="subscriptions.php"><i class="fab fa-cc-visa"></i><span>Subscriptions</span></a>
-            <a href="messages.php"><i class="fas fa-hamburger"></i><span>Messages</span></a>
-            <a href=""><i class="fas fa-chart-line"></i><span>Contact Us</span></a>
+            <a href="seasons.php"><i class="far fa-clouds-sun"></i><span>Seasons Master</span></a>
+            <a href="product.php" class="li-active"><i class="fab fa-product-hunt"></i><span>Product Master</span></a>
+            <a href="subscriptions.php"><i class="fal fa-mail-bulk"></i><span>Subscriptions</span></a>
+            <a href="messages.php"><i class="far fa-comment-alt-dots"></i><span>Messages</span></a>
         </div>
     </section>
 
@@ -54,7 +55,7 @@
                 <i class="far fa-bell"></i>
                 <img class="logot_popup_btn" src="assets/images/1.jpg" alt="">
                 <div class="logout_popup_wraper">
-                    <a href="logout.php">Logout</a>
+                    <a href="logout.php">Logout <i class="fal fa-sign-out-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -158,17 +159,15 @@
                     </tr>
                 </thead>
                 <!-- <tbody class="products_tbody">
-
                 </tbody> -->
             </table>
         </div>
     </section>
 
-
+    <script src="assets/js/sweetalert2.all.min.js"></script>
     <script src="assets/datatable/jquery-3.5.1.js"></script>
     <script src="assets/datatable/jquery.dataTables.min.js"></script>
     <script src="assets/datatable/dataTables.responsive.min.js"></script>
     <script src="assets/js/product.js"></script>
-
 </body>
 </html>

@@ -40,20 +40,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('body').on('click','.delete_mail',function(){
         mail_id=this.parentElement.parentElement.dataset.id;
-        let formData = new FormData();
-        formData.append('pages','deletmail');
-        formData.append('mail',mail_id)
-        fetch('assets/process/subscription-process.php', {
-            method: 'post',
-            body: formData,
-        })
-        .then( res => res.json())
-        .then( data => {
-            //console.log(data);
-            if(data=="success"){
-                loadMails()
+        Swal.fire({  
+            title: 'Do you want to Delet the Mail in List?',  
+            showCancelButton: true,  
+            confirmButtonText: `Yes`,  
+            cancelButtonText: `No`,
+        }).then((result) => {  
+            if (result.isConfirmed) {  
+                let formData = new FormData();
+                formData.append('pages','deletmail');
+                formData.append('mail',mail_id)
+                fetch('assets/process/subscription-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success") loadMails();
+                })
+                Swal.fire('Deleted!', '', 'success')  
             }
-        })
+        });
     })
 
     $('#sendmail_form').on('submit',function(e){

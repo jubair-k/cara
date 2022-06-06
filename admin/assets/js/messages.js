@@ -72,7 +72,6 @@ document.addEventListener('DOMContentLoaded',function(){
             confirmButtonText: `Yes`,  
             cancelButtonText: `No`,
         }).then((result) => {  
-            /* Read more about isConfirmed, isDenied below */  
             if (result.isConfirmed) {  
                 let formData = new FormData();
                 formData.append('pages','deletMsg');
@@ -129,7 +128,7 @@ document.addEventListener('DOMContentLoaded',function(){
             })
             .then( res => res.json())
             .then( data => {
-                console.log(data);
+                //console.log(data);
                 if(data.error){
                     Swal.fire({
                         icon: "error",

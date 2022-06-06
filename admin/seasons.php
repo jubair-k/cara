@@ -16,6 +16,8 @@
     <script src="assets/jquery/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/seasons.css">
+    <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Seasons</title>
 </head>
 <body>
@@ -26,13 +28,12 @@
 
         <div class="items">
             <a href="dashboard.php"><i class="fad fa-chart-pie-alt"></i><span>Dashboard</span></a>
-            <a href="categories.php"><i class="fab fa-uikit"></i><span>Categories Master</span></a>
+            <a href="categories.php" ><i class="fab fa-uikit"></i><span>Categories Master</span></a>
             <a href="sub-categories.php"><i class="fas fa-th-large"></i><span>Sub Categories Master</span></a>
-            <a href="seasons.php" class="li-active"><i class="fas fa-edit"></i><span>Seasons Master</span></a>
-            <a href="product.php"><i class="fas fa-edit"></i><span>Product Master</span></a>
-            <a href="subscriptions.php"><i class="fab fa-cc-visa"></i><span>Subscriptions</span></a>
-            <a href="messages.php"><i class="fas fa-hamburger"></i><span>Messages</span></a>
-            <a href=""><i class="fas fa-chart-line"></i><span>Contact Us</span></a>
+            <a href="seasons.php" class="li-active"><i class="far fa-clouds-sun"></i><span>Seasons Master</span></a>
+            <a href="product.php"><i class="fab fa-product-hunt"></i><span>Product Master</span></a>
+            <a href="subscriptions.php"><i class="fal fa-mail-bulk"></i><span>Subscriptions</span></a>
+            <a href="messages.php"><i class="far fa-comment-alt-dots"></i><span>Messages</span></a>
         </div>
     </section>
 
@@ -52,7 +53,7 @@
                 <i class="far fa-bell"></i>
                 <img class="logot_popup_btn" src="assets/images/1.jpg" alt="">
                 <div class="logout_popup_wraper">
-                    <a href="logout.php">Logout</a>
+                    <a href="logout.php">Logout <i class="fal fa-sign-out-alt"></i></a>
                 </div>
             </div>
         </div>
@@ -78,183 +79,12 @@
                     </tr>
                 </thead>
                 <tbody class="seasons_tbody">
-
                 </tbody>
             </table>
         </div>
     </section>
 
-
-    <script>
-        $(document).ready(function(){
-            $('#menu-btn').click(function(){
-                $('#menu').toggleClass('active')
-            })
-
-            $('.logot_popup_btn').click(function(){
-                $('.logout_popup_wraper').toggleClass('logout_popup_active')
-            })
-
-
-            $('#addseasonsBtn').click(function(){
-                $('#addseasons_form').slideToggle('slow');
-            })
-
-            function loadSeasons(){
-                let formData = new FormData();
-                formData.append('loadSeasons','post');
-                fetch('assets/process/seasons-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    trs="";
-                    for (const row of data.sesns) {
-                        trs+=`<tr data-id="${row.id}">
-                                <td>${row.season}</td>`
-                        if(row.status=='1'){
-                            stbtn=`<button class="status_active stbtn">Active</button>`
-                        }else{
-                            stbtn=`<button class="status_deactive stbtn">Deactive</button>`
-                        }
-
-
-                        trs+=`<td class="operate_td">${stbtn} <button class="edite_sesn">Edit</button> <button class="delete_sesn">Delete</button></td>
-                            </tr>
-                        `
-                    }
-                    $('.seasons_tbody').html(trs);
-                })
-            }
-
-            loadSeasons();
-
-            $('#addseasons_form').on('submit',function(){
-                event.preventDefault();
-                if($('#seasonsname').val()!=""){
-                    if($('.submit').val()=="Submit"){
-                        let formData = new FormData();
-                        formData.append('addSeason','post');
-                        formData.append('sesnname',$('#seasonsname').val())
-                        fetch('assets/process/seasons-process.php', {
-                            method: 'post',
-                            body: formData,
-                        })
-                        .then( res => res.json())
-                        .then( data => {
-                            //console.log(data);
-                            if(data=="ok"){
-                                $('#seasonsname').val('');
-                                loadSeasons()
-                            }
-
-                            if(data.exist){
-                                $('.exist_alert').text(data.exist);
-                            }
-                            else{
-                                $('.exist_alert').text("");
-                            }
-                        })
-                    }
-
-                    if($('.submit').val()=="Save"){
-                        let formData = new FormData();
-                        formData.append('saveSeasons','post');
-                        formData.append('sesnsavename',$('#seasonsname').val())
-                        formData.append('sesnsave',sesnedit_id)
-                        fetch('assets/process/seasons-process.php', {
-                            method: 'post',
-                            body: formData,
-                        })
-                        .then( res => res.json())
-                        .then( data => {
-                            //console.log(data);
-                            if(data=="ok"){
-                                $('#seasonsname').val('');
-                                loadSeasons()
-                                $('#addseasons_form').slideUp('fast');
-                                $('.submit').val('Submit')
-                            }
-
-                            if(data.exist){
-                                $('.exist_alert').text(data.exist);
-                            }
-                            else{
-                                $('.exist_alert').text("");
-                            }
-                        })
-                    }
-                }
-            })
-
-            $('body').on('click','.delete_sesn',function(){
-                sesn_id=this.parentElement.parentElement.dataset.id;
-                let formData = new FormData();
-                formData.append('deletesesn','post');
-                formData.append('sesn',sesn_id)
-                fetch('assets/process/seasons-process.php', {
-                    method: 'post',
-                    body: formData,
-                })
-                .then( res => res.json())
-                .then( data => {
-                    //console.log(data);
-                    if(data=="success"){
-                        loadSeasons()
-                    }
-                })
-            })
-
-            $('body').on('click','.stbtn',function(){
-                if(this.classList.contains('status_active')){
-                    sesn_id=this.parentElement.parentElement.dataset.id;
-                    let formData = new FormData();
-                    formData.append('deactivesesn','post');
-                    formData.append('sesn',sesn_id)
-                    fetch('assets/process/seasons-process.php', {
-                        method: 'post',
-                        body: formData,
-                    })
-                    .then( res => res.json())
-                    .then( data => {
-                        //console.log(data);
-                        if(data=="success"){
-                            loadSeasons()
-                        }
-                    })
-                }
-
-                if(this.classList.contains('status_deactive')){
-                    sesn_id=this.parentElement.parentElement.dataset.id;
-                    let formData = new FormData();
-                    formData.append('activesesn','post');
-                    formData.append('sesn',sesn_id)
-                    fetch('assets/process/seasons-process.php', {
-                        method: 'post',
-                        body: formData,
-                    })
-                    .then( res => res.json())
-                    .then( data => {
-                        //console.log(data);
-                        if(data=="success"){
-                            loadSeasons()
-                        }
-                    })
-                }
-            })
-
-            $('body').on('click','.edite_sesn',function(){
-                sesnedit_id=this.parentElement.parentElement.dataset.id
-                $('#addseasons_form').slideDown('fast');
-                $('#seasonsname').val(this.parentElement.parentElement.children[0].textContent)
-                $('.submit').val('Save')
-            })
-
-
-
-        })
-    </script>
+    <script src="assets/js/sweetalert2.all.min.js"></script>
+    <script src="assets/js/seasons.js"></script>
 </body>
 </html>

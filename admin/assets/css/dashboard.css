@@ -145,6 +145,7 @@ body{
     visibility: hidden;
 }
 #interface .navigation .profile .logout_popup_wraper a{
+    display: flex;
     text-decoration: none;
     padding: 3px 8px;
     background-color: #fff;
@@ -156,6 +157,9 @@ body{
     cursor: pointer;
     font-size: 1rem;
     transition: 0.3s ease;
+}
+#interface .navigation .profile .logout_popup_wraper a .fal{
+    margin-left: 10px;
 }
 
 #interface .navigation .profile .logout_popup_active{

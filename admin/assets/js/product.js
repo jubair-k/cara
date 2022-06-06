@@ -20,7 +20,7 @@ document.addEventListener('DOMContentLoaded',function(){
         })
         .then( res => res.json())
         .then( data => {
-            console.log(data);
+            //console.log(data);
             $('#productTable').DataTable({
                 destroy: true,
                 processing: true,
@@ -47,8 +47,6 @@ document.addEventListener('DOMContentLoaded',function(){
                     }
                 ],
             });
-        
-
         })
     }
 
@@ -122,9 +120,7 @@ document.addEventListener('DOMContentLoaded',function(){
                         $('#image_alert').text('');
                     }
 
-                    if(data.imgext){
-                        $('#image_alert').text(data.imgext);
-                    }
+                    if(data.imgext) $('#image_alert').text(data.imgext);
                 })
             }
             else{
@@ -153,9 +149,7 @@ document.addEventListener('DOMContentLoaded',function(){
                     $('#image_alert').text('');
                 }
 
-                if(data.imgext){
-                    $('#image_alert').text(data.imgext);
-                }
+                if(data.imgext)  $('#image_alert').text(data.imgext);
             })
         }
     })
@@ -173,9 +167,7 @@ document.addEventListener('DOMContentLoaded',function(){
             .then( res => res.json())
             .then( data => {
                 //console.log(data);
-                if(data=="success"){
-                    loadProductsTable()
-                }
+                if(data=="success") loadProductsTable();
             })
         }
 
@@ -191,9 +183,7 @@ document.addEventListener('DOMContentLoaded',function(){
             .then( res => res.json())
             .then( data => {
                 //console.log(data);
-                if(data=="success"){
-                    loadProductsTable()
-                }
+                if(data=="success")  loadProductsTable();
             })
         }
     })
@@ -210,12 +200,7 @@ document.addEventListener('DOMContentLoaded',function(){
         .then( res => res.json())
         .then( data => {
             //console.log(data);
-            if(data=="success"){
-                loadProductsTable()
-                // var myTable = $('#productTable').DataTable();
-                // console.log(myTable);
-                // myTable.row( tr ).delete();-
-            }
+            if(data=="success")  loadProductsTable();
         })
     })
 

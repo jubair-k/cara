@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/css/dashboard.css">
     <link rel="stylesheet" href="assets/css/messages.css">
     <link rel="stylesheet" href="assets/css/sweetalert2.min.css">
+    <link rel="icon" type="image/png" href="assets/images/logo.png">
     <title>Messages</title>
 </head>
 <body>
@@ -33,7 +34,6 @@
             <a href="product.php"><i class="fab fa-product-hunt"></i><span>Product Master</span></a>
             <a href="subscriptions.php"><i class="fal fa-mail-bulk"></i><span>Subscriptions</span></a>
             <a href="messages.php" class="li-active"><i class="far fa-comment-alt-dots"></i><span>Messages</span></a>
-            <a href=""><i class="fas fa-chart-line"></i><span>Contact Us</span></a>
         </div>
     </section>
 
@@ -61,14 +61,6 @@
         <div class="interface_header">
             <h3 class="i-name">Messages</h3>
         </div>
-
-        <!-- <form class="board" id="sendmail_form">
-            <label for="">Subject</label>
-            <input type="text" placeholder="" id="subject" autocomplete="off" required>
-            <label for="">Body</label>
-            <textarea name="mailody" id="mailody" cols="30" rows="10" autocomplete="off" required></textarea>
-            <input type="submit" class="submit" value="Send">
-        </form> -->
 
         <div class="board">
             <table width="100%">
