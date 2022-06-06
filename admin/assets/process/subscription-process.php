@@ -68,6 +68,8 @@
                 } else{
                     $result['error']=$arr;
                 }
+            } else {
+                $result['error']=$arr;  
             }
         }
 
