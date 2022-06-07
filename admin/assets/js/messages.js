@@ -108,7 +108,9 @@ document.addEventListener('DOMContentLoaded',function(){
     $('body').on('submit','.send_message',function(e){
         e.preventDefault();
         msgId=this.dataset.id;
-        if($('#subject').val()!="" && $('#mailody').val()!=""){
+        subject=this.children[1].value;
+        bod=this.children[3].value;
+        if(subject!="" && bod!=""){
             Swal.fire({
                 title:'Sending ...',
                 text:'Please Wait !',
@@ -120,8 +122,8 @@ document.addEventListener('DOMContentLoaded',function(){
             let formData = new FormData();
             formData.append('pages','sendmsg');
             formData.append('msg',msgId);
-            formData.append('subject',$('#subject').val())
-            formData.append('body',$('#mailody').val())
+            formData.append('subject',subject)
+            formData.append('body',bod)
             fetch('assets/process/messages-process.php', {
                 method: 'post',
                 body: formData,
