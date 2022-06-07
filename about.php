@@ -29,7 +29,7 @@
 
     <section id="page-header" class="about-header">
         <h2>#Know Us</h2>
-        <p>Lorem ipsum dolor sit amet adipisicing.</p>
+        <p>We are a team of expert designers.</p>
     </section>
 
     <section id="about-head" class="section-p1">
