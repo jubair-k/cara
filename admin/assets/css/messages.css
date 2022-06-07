@@ -34,6 +34,10 @@
 .replay{
     background-color:#554cd1;
 }
+.viewmsg{
+    cursor: pointer;
+}
+
 
 
 @media (max-width:477px) {

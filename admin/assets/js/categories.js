@@ -54,6 +54,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Category Added Successfully.",
+                            timer:2000
+                        });
                         $('#categoriesname').val('');
                         loadCategories()
                     }
@@ -80,6 +85,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Changes Saved Successfully.",
+                            timer:2000
+                        });
                         $('#categoriesname').val('');
                         loadCategories()
                         $('#addctegories_form').slideUp('fast');
@@ -99,18 +109,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('body').on('click','.delete_categ',function(){
         categ_id=this.parentElement.parentElement.dataset.id;
-        let formData = new FormData();
-        formData.append('deletecateg','post');
-        formData.append('categ',categ_id)
-        fetch('assets/process/categories-process.php', {
-            method: 'post',
-            body: formData,
-        })
-        .then( res => res.json())
-        .then( data => {
-            //console.log(data);
-            if(data=="success") loadCategories() ;
-        })
+        Swal.fire({  
+            title: 'Do you want to Delet the Category?',  
+            showCancelButton: true,  
+            confirmButtonText: `Yes`,  
+            cancelButtonText: `No`,
+        }).then((result) => {  
+            if (result.isConfirmed) {  
+                let formData = new FormData();
+                formData.append('deletecateg','post');
+                formData.append('categ',categ_id)
+                fetch('assets/process/categories-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success") loadCategories() ;
+                })
+                Swal.fire('Deleted!', '', 'success')  
+            }
+        });
     })
 
     $('body').on('click','.stbtn',function(){

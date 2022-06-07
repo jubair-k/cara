@@ -105,6 +105,7 @@ body{
     border-bottom: 3px solid #594ef7;
     width: calc(100% - 300px);
     position: fixed;
+    z-index: 900;
 }
 #interface .navigation .search {
     display: flex;

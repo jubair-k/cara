@@ -113,6 +113,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data.correct){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Product Added Successfully.",
+                            timer:2000
+                        });
                         loadProductsTable()
                         $('.form_group input').val('');
                         $('.form_group textarea').val('');
@@ -124,6 +129,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 })
             }
             else{
+                Swal.fire({
+                    icon: "warning",
+                    title:"Image required",
+                    timer:1000
+                });
                 $('#image_alert').text('Image required');
             }
         }
@@ -140,6 +150,11 @@ document.addEventListener('DOMContentLoaded',function(){
             .then( data => {
                 //console.log(data);
                 if(data.correct=="ok"){
+                    Swal.fire({
+                        icon: "success",
+                        title:"Changes Saved Successfully.",
+                        timer:2000
+                    });
                     loadProductsTable()
                     $('#addproduct_form').slideUp('fast');
                     $('.submit').val('Submit')
@@ -190,18 +205,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('body').on('click','.delete_prdct',function(){
         prdct_id=this.dataset.id;
-        let formData = new FormData();
-        formData.append('deleteprdct','post');
-        formData.append('prdct',prdct_id)
-        fetch('assets/process/product-process.php', {
-            method: 'post',
-            body: formData,
-        })
-        .then( res => res.json())
-        .then( data => {
-            //console.log(data);
-            if(data=="success")  loadProductsTable();
-        })
+        Swal.fire({  
+            title: 'Do you want to Delet the Product?',  
+            showCancelButton: true,  
+            confirmButtonText: `Yes`,  
+            cancelButtonText: `No`,
+        }).then((result) => {  
+            if (result.isConfirmed) {  
+                let formData = new FormData();
+                formData.append('deleteprdct','post');
+                formData.append('prdct',prdct_id)
+                fetch('assets/process/product-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success")  loadProductsTable();
+                })        
+                Swal.fire('Deleted!', '', 'success')  
+            }
+        });
     })
 
     $('body').on('click','.edite_prdct',function(){

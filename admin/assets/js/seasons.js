@@ -55,6 +55,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Season Added Successfully.",
+                            timer:2000
+                        });
                         $('#seasonsname').val('');
                         loadSeasons()
                     }
@@ -81,6 +86,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Changes Saved Successfully.",
+                            timer:2000
+                        });
                         $('#seasonsname').val('');
                         loadSeasons()
                         $('#addseasons_form').slideUp('fast');
@@ -100,18 +110,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('body').on('click','.delete_sesn',function(){
         sesn_id=this.parentElement.parentElement.dataset.id;
-        let formData = new FormData();
-        formData.append('deletesesn','post');
-        formData.append('sesn',sesn_id)
-        fetch('assets/process/seasons-process.php', {
-            method: 'post',
-            body: formData,
-        })
-        .then( res => res.json())
-        .then( data => {
-            //console.log(data);
-            if(data=="success") loadSeasons();
-        })
+        Swal.fire({  
+            title: 'Do you want to Delet the Season?',  
+            showCancelButton: true,  
+            confirmButtonText: `Yes`,  
+            cancelButtonText: `No`,
+        }).then((result) => {  
+            if (result.isConfirmed) {  
+                let formData = new FormData();
+                formData.append('deletesesn','post');
+                formData.append('sesn',sesn_id)
+                fetch('assets/process/seasons-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success") loadSeasons();
+                })
+                Swal.fire('Deleted!', '', 'success')  
+            }
+        });
     })
 
     $('body').on('click','.stbtn',function(){

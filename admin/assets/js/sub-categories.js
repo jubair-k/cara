@@ -76,6 +76,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Subcategory Added Successfully.",
+                            timer:2000
+                        });
                         $('#categoriesId').val('');
                         $('#subcategoriesname').val('');
                         loadSubCategories()
@@ -104,6 +109,11 @@ document.addEventListener('DOMContentLoaded',function(){
                 .then( data => {
                     //console.log(data);
                     if(data=="ok"){
+                        Swal.fire({
+                            icon: "success",
+                            title:"Changes Saved Successfully.",
+                            timer:2000
+                        });
                         $('#categoriesId').val('');
                         $('#subcategoriesname').val('');
                         loadSubCategories()
@@ -124,18 +134,28 @@ document.addEventListener('DOMContentLoaded',function(){
 
     $('body').on('click','.delete_subcateg',function(){
         subcateg_id=this.parentElement.parentElement.dataset.id;
-        let formData = new FormData();
-        formData.append('deletesubcateg','post');
-        formData.append('subcateg',subcateg_id)
-        fetch('assets/process/sub-categories-process.php', {
-            method: 'post',
-            body: formData,
-        })
-        .then( res => res.json())
-        .then( data => {
-            //console.log(data);
-            if(data=="success")  loadSubCategories();
-        })
+        Swal.fire({  
+            title: 'Do you want to Delet the Subcategory?',  
+            showCancelButton: true,  
+            confirmButtonText: `Yes`,  
+            cancelButtonText: `No`,
+        }).then((result) => {  
+            if (result.isConfirmed) {  
+                let formData = new FormData();
+                formData.append('deletesubcateg','post');
+                formData.append('subcateg',subcateg_id)
+                fetch('assets/process/sub-categories-process.php', {
+                    method: 'post',
+                    body: formData,
+                })
+                .then( res => res.json())
+                .then( data => {
+                    //console.log(data);
+                    if(data=="success")  loadSubCategories();
+                })
+                Swal.fire('Deleted!', '', 'success')  
+            }
+        });
     })
 
     $('body').on('click','.stbtn',function(){
