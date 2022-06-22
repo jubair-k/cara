@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3308
--- Generation Time: May 19, 2022 at 10:16 AM
+-- Generation Time: Jun 22, 2022 at 04:20 AM
 -- Server version: 8.0.18
 -- PHP Version: 7.3.12
 
@@ -11,6 +11,12 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `cara`
@@ -64,6 +70,33 @@ INSERT INTO `categories` (`id`, `categories`, `status`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `messages`
+--
+
+DROP TABLE IF EXISTS `messages`;
+CREATE TABLE IF NOT EXISTS `messages` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `subject` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci DEFAULT NULL,
+  `message` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `messages`
+--
+
+INSERT INTO `messages` (`id`, `user_name`, `email`, `subject`, `message`, `time`) VALUES
+(1, 'jubair', 'jubair@gmail.com', 'personal', 'new message', '2022-05-31 09:43:30'),
+(6, 'jubair', 'jubair@gmail.com', '', 'dfs', '2022-05-31 09:52:36'),
+(8, 'abc', 'abc@gmail.com', '', 'sdfsd', '2022-06-01 12:19:24'),
+(10, 'abc', 'jubairk576@gmail.com', '', 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Numquam rem porro aspernatur nesciunt cumque placeat ut laboriosam non deleniti dolore soluta fuga facilis earum, tempore atque quaerat animi ipsam illo.', '2022-06-01 12:23:12');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
@@ -85,7 +118,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `best_seller` int(11) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `product`
@@ -107,7 +140,7 @@ INSERT INTO `product` (`id`, `categories_id`, `sub_categories_id`, `product_name
 (13, 1, 1, 'Denim shirt with patch pocket', 1800, 1600, 0, '0000-00-00', 8, 'n5.jpg', 'Designed with the Jet-setting man in mind, the shirt is lightweight, comfortable and crease-resistant. The fabric has a natural memory designed to \'Stretch\' with movement of the body while retaining a sharp, lightweight structure. Featuring slim fit styling and a small color, this Shirt comes in an array of plain colors, some with regular cuffs and some with french cuffs.', 'Denim shirt with patch pocket', 1, 0, 1),
 (14, 1, 10, 'Cotton shorts with insert pocket', 750, 500, 0, '0000-00-00', 5, 'n6.jpg', 'Designed with the Jet-setting man in mind, the shorts is lightweight, comfortable and crease-resistant. The fabric has a natural memory designed to \'Stretch\' with movement of the body while retaining a sharp, lightweight structure. Featuring slim fit styling and a small color, this Shorts comes in an array of plain colors.', 'Cotton shorts with insert pocket', 3, 0, 1),
 (15, 1, 1, 'Slim fit shirt with flap pockets', 1000, 850, 0, '0000-00-00', 18, 'n7.jpg', 'Designed with the Jet-setting man in mind, the shirt is lightweight, comfortable and crease-resistant. The fabric has a natural memory designed to \'Stretch\' with movement of the body while retaining a sharp, lightweight structure. Featuring slim fit styling and a small color, this Shirt comes in an array of plain colors, some with regular cuffs and some with french cuffs.', 'Slim fit shirt with flap pockets', 1, 0, 1),
-(16, 1, 1, 'Half sleeves shirt with band collar ', 800, 600, 0, '0000-00-00', 10, 'n8.jpg', 'Designed with the Jet-setting man in mind, the shirt is lightweight, comfortable and crease-resistant. The fabric has a natural memory designed to \'Stretch\' with movement of the body while retaining a sharp, lightweight structure. Featuring slim fit styling and a small color, this Shirt comes in an array of plain colors, some with regular cuffs and some with french cuffs.', 'Half sleeves shirt with band collar', 0, 0, 1);
+(16, 1, 1, 'Half sleeves shirt with band collar ', 800, 600, 0, '0000-00-00', 0, 'n8.jpg', 'Designed with the Jet-setting man in mind, the shirt is lightweight, comfortable and crease-resistant. The fabric has a natural memory designed to \'Stretch\' with movement of the body while retaining a sharp, lightweight structure. Featuring slim fit styling and a small color, this Shirt comes in an array of plain colors, some with regular cuffs and some with french cuffs.', 'Half sleeves shirt with band collar', 0, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -121,7 +154,7 @@ CREATE TABLE IF NOT EXISTS `seasons` (
   `season` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `seasons`
@@ -130,6 +163,27 @@ CREATE TABLE IF NOT EXISTS `seasons` (
 INSERT INTO `seasons` (`id`, `season`, `status`) VALUES
 (1, 'Winter', 1),
 (3, 'Summer', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `subscribers`
+--
+
+DROP TABLE IF EXISTS `subscribers`;
+CREATE TABLE IF NOT EXISTS `subscribers` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `mail` varchar(255) NOT NULL,
+  `status` tinyint(4) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `subscribers`
+--
+
+INSERT INTO `subscribers` (`id`, `mail`, `status`) VALUES
+(7, 'jubairk576@gmail.com', 1);
 
 -- --------------------------------------------------------
 
@@ -144,7 +198,7 @@ CREATE TABLE IF NOT EXISTS `sub_categories` (
   `sub_categories` varchar(255) NOT NULL,
   `status` tinyint(4) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `sub_categories`
@@ -160,3 +214,7 @@ INSERT INTO `sub_categories` (`id`, `categories_id`, `sub_categories`, `status`)
 (9, 2, 'Bottomwear', 1),
 (10, 1, 'Shorts', 1);
 COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
